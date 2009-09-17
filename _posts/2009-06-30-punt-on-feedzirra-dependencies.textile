@@ -1,0 +1,95 @@
+---
+title: Punting on Feedzirra Dependencies
+layout: post
+categories: tidbits
+---
+After watching Ryan Bates' "video on feed parsing":http://railscasts.com/episodes/168-feed-parsing I decided to give "Feedzirra":http://github.com/pauldix/feedzirra a try. Though I did eventually get the Feedzirra gem working, rounding up and installing the dependencies was painful enough that I decided not to use it.
+
+If you're having trouble installing Feedzirra I encourage you to evaluate whether you really need it. In my application I did the following to accomplish most of what was covered in Railscast #168 on a Twitter feed:
+
+
+h2. 1. Install libxml-ruby
+
+The libxml-ruby parser is quite fast. If you're using REXML or hpricot to parse XML you should consider switching as the difference in speed is *significant*. To install, add the following to <tt>config/environment.rb</tt> in your Rails app:
+
+{% highlight ruby %}
+config.gem "libxml-ruby", :lib => "xml"
+{% endhighlight %}
+
+and then run:
+
+{% highlight bash %}
+sudo rake gems:install
+{% endhighlight %}
+
+or if you wish to install manually:
+
+{% highlight bash %}
+sudo gem install libxml-ruby
+{% endhighlight %}
+
+
+h2. 2. Create a Model For Your Feed
+
+You need to create a model to store your feeds in the database, so use the Rails generator script:
+
+{% highlight bash %}
+script/generate model Tweet \
+  guid:string url:string body:text published_at:datetime
+{% endhighlight %}
+
+and then add this class method to the skeleton ActiveRecord model:
+
+{% highlight ruby %}
+def self.update_from_feed
+
+  # fetch XML document
+  uri = URI.parse("http://twitter.com/...")
+  res = Net::HTTP.start(uri.host, uri.port){ |http| http.get(uri.path) }
+  
+  # quit if non-2xx HTTP response
+  return unless res.code[0...1] == "2"
+  
+  # parse and save
+  doc = XML::Parser.string(res.body).parse
+  doc.find("/rss/channel/item").each do |item|
+    guid = item.find_first("guid").content
+    unless exists? :guid => guid
+      create!(
+        :body         => item.find_first("description").content,
+        :url          => item.find_first("link").content,
+        :published_at => item.find_first("pubDate").content,
+        :guid         => guid
+      )
+    end
+  end
+end
+{% endhighlight %}
+
+
+h2. 3. Try it out
+
+Make sure to run the migration to create the <tt>tweets</tt> table:
+
+{% highlight bash %}
+rake db:migrate
+{% endhighlight %}
+
+then start a console session:
+
+{% highlight bash %}
+script/console
+{% endhighlight %}
+
+and fetch/parse/save your tweets:
+
+{% highlight bash %}
+Tweet.count # should return 0
+Tweet.update_from_feed
+Tweet.count # should return n > 0
+{% endhighlight %}
+
+Your <tt>tweets</tt> table should now be populated with the latest data.
+
+Note that although libxml-ruby is fast, you should be aware of the payload you're receiving on each update and think about how often you can afford to fetch and parse a multi-megabyte feed.
+

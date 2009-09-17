@@ -1,0 +1,10 @@
+---
+title: Code
+layout: default
+---
+h1. Code
+
+<ul class="posts">{% for post in site.categories.code %}
+  <li>{{ post.date | date_to_string }} &raquo; "{{ post.title }}":{{ post.url }}</li>
+{% endfor %}</ul>
+

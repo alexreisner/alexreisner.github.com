@@ -1,0 +1,19 @@
+---
+title: Build Web Applications Using Static HTML
+layout: post
+categories: articles
+---
+Imagine deploying a web application without having to do any server configuration. In fact, imagine deploying a web application by simply uploading a collection of static HTML files.
+
+* create open source services (pay for hosting, or run your own) for managing via AJAX:
+  * comments (Disqus)
+  * syntax highlighting (Gist, Pastie)
+  * discussion (whatever Railscasts uses)
+  * email delivery
+* use CouchDB?
+
+Benefits:
+
+* no need to set up a optimized server for every app
+* no need to build the same functionality into every app
+

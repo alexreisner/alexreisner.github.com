@@ -1,0 +1,10 @@
+---
+title: Articles
+layout: default
+---
+h1. Articles
+
+<ul class="posts">{% for post in site.categories.articles %}
+  <li>{{ post.date | date_to_string }} &raquo; "{{ post.title }}":{{ post.url }}</li>
+{% endfor %}</ul>
+
