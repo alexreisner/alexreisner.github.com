@@ -26,7 +26,7 @@ div.highlight {
 
 
 /* --- Typography --- */
-h1, h2, h3, p, ul, ol, table,
+h1, h2, h3, p, ul, ol, dl, table,
 div.highlight,
 div#disqus_thread {
   margin-left: 194px;
@@ -62,7 +62,7 @@ h1.name a {
 /*  color: #666;*/
   color: #00B3BF;  
 }
-h2 {
+h2, h3 {
   margin-top: 32px;
 }
 a       { color: #F57F20; text-decoration: none; }
@@ -70,6 +70,9 @@ a:hover { color: #FBC1A0; }
 p.date {
   text-align: right;
   font-style: italic;
+}
+dd {
+	margin-bottom: 8px;
 }
 
 /* --- Navbar --- */
