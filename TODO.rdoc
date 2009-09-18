@@ -1,3 +1,7 @@
 = To-do List
 
-* RSS/Atom feed
+* use home page layout for all non-post pages
+* add sidebar/contact info to non-post pages (incl home)
+* bleed image on post pages into mail column (set as div#doc bg?)
+* RSS feed
+

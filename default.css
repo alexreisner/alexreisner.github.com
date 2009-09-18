@@ -16,7 +16,13 @@ body {
 #hd {
   margin-bottom: 64px;
 }
-
+#sidebar {
+  background-image: url(/images/bg1_sidebar.png);
+  background-repeat: no-repeat;
+  background-position: center 50px;
+  padding-top: 60px;
+  text-align: center;
+}
 div.highlight {
   border: 1px solid #eee;
   background-color: #f6f6f6;
@@ -24,13 +30,12 @@ div.highlight {
   margin-bottom: 12px;
 }
 
+#sidebar_logo {
+  margin-bottom: 42px;
+}
+
 
 /* --- Typography --- */
-h1, h2, h3, p, ul, ol, dl, table,
-div.highlight,
-div#disqus_thread {
-  margin-left: 194px;
-}
 ul.posts li {
   list-style-type: none;
 }
@@ -41,26 +46,14 @@ ul {
   padding-left: 18px;
 }
 h1 {
-  text-transform: uppercase;
   font-weight: normal;
+  width: 70%;
   letter-spacing: -1px;
-  font-size: 317%;
-/*  color: #00B3BF;*/
+  font-size: 257%;
+  line-height: 108%;
   color: #000;
-  font-style: normal;
-  margin-top: 0;
-  margin-bottom: 24px;
-}
-h1.name {
-  font-weight: bold;
-  font-size: 108%;
-  letter-spacing: normal;
-  font-style: italic;
-  margin-bottom: 0;
-}
-h1.name a {
-/*  color: #666;*/
-  color: #00B3BF;  
+  margin-bottom: 54px;
+  margin-top: 72px;
 }
 h2, h3 {
   margin-top: 32px;
@@ -68,7 +61,8 @@ h2, h3 {
 a       { color: #F57F20; text-decoration: none; }
 a:hover { color: #FBC1A0; }
 p.date {
-  text-align: right;
+/*  text-align: right;*/
+  color: #999;
   font-style: italic;
 }
 dd {
@@ -76,9 +70,8 @@ dd {
 }
 
 /* --- Navbar --- */
-ul#navbar {
+#navbar {
   margin: 0;
-  margin-left: 60px;
   padding-left: 0;
   white-space: nowrap;
 }
@@ -86,7 +79,6 @@ ul#navbar {
   display: inline;
   list-style-type: none;
 }
-
 #navbar a {
   display: block;
   float: left;
@@ -101,6 +93,15 @@ ul#navbar {
 #navbar a:link,
 #navbar a:visited { color: #666; }
 #navbar a:hover   { background-color: #FDF383; }
+
+
+/* --- Home Page --- */
+.home_page #navbar {
+  margin-left: 210px;
+}
+.home_page .posts {
+  margin-left: 210px;
+}
 
 
 /* --- Disqus Comments --- */
