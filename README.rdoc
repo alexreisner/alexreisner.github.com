@@ -1,0 +1,5 @@
+= Alex Reisner: Code
+
+This is the code for my web site ("blog") about computer programming which is located at http://code.alexreisner.com. It is a collection of articles and templates rendered to static HTML pages using Jekyll (http://github.com/mojombo/jekyll). The site is currently hosted by GitHub.
+
+
