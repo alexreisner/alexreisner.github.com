@@ -3,7 +3,7 @@ title: Form Builders in Rails
 layout: post
 categories: articles
 ---
-There is no question that metaprogramming techniques bring enormous power to Ruby on Rails. But in some places that power comes at the cost of code readability. One place in which a maze of hook methods and dynamically-defined methods can at first obscure the behavior of the code is in ActionView's FormBuilder. Because custom FormBuilders have been invaluable in my work I'd like to give you a guided tour of the source code so you can understand it and be prepared to harness the power of custom FormBuilders in your applications. At the end I'll also offer some practical tips (feel free to "skip to the bottom":#tips if you're in a rush).
+There is no question that metaprogramming techniques bring enormous power to Ruby on Rails, but in some places that power comes at the cost of code readability. One place in which a maze of hook methods and dynamically-defined methods can at first obscure the behavior of the code is in ActionView's FormBuilder. Because custom FormBuilders have been invaluable in my work I'd like to give you a guided tour of the source code so you can understand it and be prepared to harness the power of custom FormBuilders in your applications. At the end I'll also offer some practical tips (feel free to "skip to the bottom":#tips if you're in a rush).
 
 
 h2. A Tour of the Code
