@@ -2,9 +2,8 @@
 title: &#955;.calculator
 layout: skeleton
 ---
-<div id="doc" class="home_page">
+<div id="doc" class="home_page" style="background-image:url(/images/bg_home_car.png)">
 <div id="bd">
-
 
   <ul id="navbar">
     <li><a href="/code">code</a></li>
@@ -13,12 +12,22 @@ layout: skeleton
     <li><a href="http://www.alexreisner.com/">other</a></li>
   </ul><br style="clear:both" />
 
-  !/images/logo_home.png!
+  <div id="logo_container">
+    !/images/logo_home.png!
+  </div>
+
+  <div class="yui-gc">
+    <div class="yui-u first">
 
   <ul class="posts">{% for post in site.posts %}
     <li>{{ post.date | date_to_string }} &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}</ul>
 
+    </div>
+    <div class="yui-u">
+      <p>Church numerals are fantastic. Always bind your variables.</p>
+    </div>
+  </div>
 
 </div>
 

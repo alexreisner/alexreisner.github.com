@@ -58,8 +58,8 @@ h1 {
 h2, h3 {
   margin-top: 32px;
 }
-a       { color: #F57F20; text-decoration: none; }
-a:hover { color: #FBC1A0; }
+a       { color: #3f6d8c; text-decoration: none; }
+a:hover { color: #00B3BF; }
 p.date {
 /*  text-align: right;*/
   color: #999;
@@ -96,12 +96,20 @@ dd {
 
 
 /* --- Home Page --- */
+.home_page {
+  background-repeat: no-repeat;
+}
 .home_page #navbar {
-  margin-left: 210px;
+  margin-left: 165px;
 }
-.home_page .posts {
-  margin-left: 210px;
+.home_page #logo_container {
+  text-align:center;
+  margin-top: 70px;
+  margin-bottom: 130px;
 }
+/*.home_page .posts {
+  margin-left: 210px;
+}*/
 
 
 /* --- Disqus Comments --- */
