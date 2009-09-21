@@ -5,12 +5,12 @@ categories: tidbits
 ---
 After watching Ryan Bates' "video on feed parsing":http://railscasts.com/episodes/168-feed-parsing I decided to give "Feedzirra":http://github.com/pauldix/feedzirra a try. Though I did eventually get the Feedzirra gem working, rounding up and installing the dependencies was painful enough that I decided not to use it.
 
-If you're having trouble installing Feedzirra I encourage you to evaluate whether you really need it. In my application I did the following to accomplish most of what was covered in Railscast #168 on a Twitter feed:
+If you're having trouble installing Feedzirra I encourage you to evaluate whether you really need it. In one application I needed to parse and display a Twitter feed and did the following to accomplish most of what was covered in "Railscast #168":http://railscasts.com/episodes/168-feed-parsing.
 
 
 h2. 1. Install libxml-ruby
 
-The libxml-ruby parser is quite fast. If you're using REXML or hpricot to parse XML you should consider switching as the difference in speed is *significant*. To install, add the following to <tt>config/environment.rb</tt> in your Rails app:
+The libxml-ruby parser is quite fast. If you're using REXML or hpricot to parse XML you should consider switching as the difference in speed is _significant_. To install, add the following to <tt>config/environment.rb</tt> in your Rails app:
 
 {% highlight ruby %}
 config.gem "libxml-ruby", :lib => "xml"
@@ -27,6 +27,8 @@ or if you wish to install manually:
 {% highlight bash %}
 sudo gem install libxml-ruby
 {% endhighlight %}
+
+Any way you install it, I promise you will not end up in a dependency quagmire.
 
 
 h2. 2. Create a Model For Your Feed
@@ -84,9 +86,9 @@ script/console
 and fetch/parse/save your tweets:
 
 {% highlight bash %}
-Tweet.count # should return 0
-Tweet.update_from_feed
-Tweet.count # should return n > 0
+Tweet.count             # should return 0
+Tweet.update_from_feed  # fetches tweets
+Tweet.count             # should return n > 0
 {% endhighlight %}
 
 Your <tt>tweets</tt> table should now be populated with the latest data.
