@@ -2,7 +2,7 @@
 title: &#955;.calculator
 layout: skeleton
 ---
-<div id="doc" class="home_page" style="background-image:url(/images/bg_home_car.png)">
+<div id="doc" class="home_page" style="background-image:url(/images/bg_home_accident.png)">
 <div id="bd">
 
   <ul id="navbar">

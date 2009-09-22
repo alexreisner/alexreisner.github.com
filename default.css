@@ -17,11 +17,12 @@ body {
   margin-bottom: 64px;
 }
 #sidebar {
-  background-image: url(/images/bg1_sidebar.png);
-  background-repeat: no-repeat;
-  background-position: center 50px;
-  padding-top: 60px;
+  padding-top: 100px;
   text-align: center;
+}
+.yui-t4 {
+  background-repeat: no-repeat;
+  background-position: right top;
 }
 div.highlight {
   border: 1px solid #eee;
@@ -31,7 +32,7 @@ div.highlight {
 }
 
 #sidebar_logo {
-  margin-bottom: 42px;
+  margin-bottom: 16px;
 }
 
 
