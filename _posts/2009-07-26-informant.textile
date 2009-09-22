@@ -1,0 +1,23 @@
+---
+title: Informant
+layout: post
+categories: code
+---
+Informant is a form builder for Rails. It gives you a useful subclass of @ActionView::FormBuilder@ which allows you to specify the full appearance and functionality of a field in a single method call. For example:
+
+{% highlight erb %}
+<%= f.text_field :name %>
+{% endhighlight %}
+
+renders something like this (in a field for a @@car@):
+
+{% highlight html %}
+<div id="car_name_field" class="field">
+  <label for="car_name">Name</label><br />
+  <input type="text" id="car_name" name="car[name]" value="" />
+</div>
+{% endhighlight %}
+
+Each type of field can have a label, a required-field marker, some descriptive text, decoration (such as a spinner for AJAX calls), and more. Three form layouts are included (Standard, Table, and Simple), and custom layouts can be added easily. Informant will make your forms shorter and more readable.
+
+For complete up-to-date documentation see the "project page at Github":http://github.com/alexreisner/informant.
