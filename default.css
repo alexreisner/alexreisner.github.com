@@ -62,7 +62,6 @@ h2, h3 {
 a       { color: #3f6d8c; text-decoration: none; }
 a:hover { color: #00B3BF; }
 p.date {
-/*  text-align: right;*/
   color: #999;
   font-style: italic;
 }
@@ -101,7 +100,7 @@ dd {
   background-repeat: no-repeat;
 }
 .home_page #navbar {
-  margin-left: 165px;
+  margin-left: 150px;
 }
 .home_page #logo_container {
   text-align:center;
