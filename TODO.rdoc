@@ -5,6 +5,5 @@
 * design
   * use home page layout for all non-post pages
   * refactor post page design
-  * syntax highlight colors
 
 
