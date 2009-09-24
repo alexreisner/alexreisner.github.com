@@ -1,9 +1,5 @@
 = To-do List
 
-* write sidebar, duplicate on home page
-
-* design
-  * use home page layout for all non-post pages
-  * refactor post page design
-
+* use home page layout for all non-post pages?
+* switch to a fork that has tags (and random?)
 
