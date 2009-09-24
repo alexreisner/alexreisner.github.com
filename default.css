@@ -36,6 +36,7 @@ ul.posts li {
 }
 ul.posts {
   padding-left: 0;
+	margin-top: 0;
 }
 ul {
   padding-left: 18px;
@@ -99,11 +100,8 @@ dd {
 .home_page #logo_container {
   text-align:center;
   margin-top: 70px;
-  margin-bottom: 130px;
+  margin-bottom: 140px;
 }
-/*.home_page .posts {
-  margin-left: 210px;
-}*/
 
 
 /* --- Disqus Comments --- */
