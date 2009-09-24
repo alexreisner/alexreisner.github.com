@@ -16,10 +16,6 @@ layout: skeleton
     !/images/logo_home.png!
   </div>
 
-  {% for i in site.categories %}
-  {{ i.name }}
-  {% endfor %}
-
   <div class="yui-gc">
     <div class="yui-u first">
 
