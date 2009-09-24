@@ -12,8 +12,6 @@ body {
 #sidebar {
   padding-top: 100px;
   text-align: center;
-  background-repeat: repeat-x;
-  background-image: url(/images/bg_sidebar_gradient.gif);
 }
 .yui-t4 {
   background-repeat: no-repeat;
@@ -25,8 +23,20 @@ div.highlight {
   padding: 10px 12px 0 12px;
   margin-bottom: 12px;
 }
-#sidebar_logo {
-  margin-bottom: 16px;
+#sidebar_content {
+  padding-top: 42px;
+  padding-bottom: 8px;
+  background-repeat: repeat-x;
+  background-image: url(/images/bg_sidebar_gradient.png);
+}
+.math {
+  margin-left: 6px;
+}
+.math td {
+  border-width: 0;
+  text-align: left;
+  vertical-align: top;
+  padding: 1px;
 }
 
 
