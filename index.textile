@@ -25,7 +25,41 @@ layout: skeleton
 
     </div>
     <div class="yui-u">
-      <p>Church numerals are fantastic. Always bind your variables.</p>
+
+      How to count:<br />
+      <table class="math">
+        <tr>
+          <td>0 &#8801;</td>
+          <td>&#955;sz.z</td>
+        </tr>
+        <tr>
+          <td>S &#8801;</td>
+          <td>&#955;wyx.y(wyx)</td>
+        </tr>
+        <tr>
+          <td>S0 &#8801;</td>
+          <td>
+            (&#955;wyx.y(wyx))(&#955;sz.z)<br />
+            &#955;yx.y((&#955;sz.z)yx)<br />
+            &#955;yx.y((&#955;z.z)x)<br />
+            &#955;yx.y(x) &#8801; <strong>1</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>S1 &#8801;</td>
+          <td>
+            (&#955;wyx.y(wyx))(&#955;sz.s(z))<br />
+            &#955;yx.y((&#955;sz.s(z))yx)<br />
+            &#955;yx.y((&#955;z.y(z))x)<br />
+            &#955;yx.y(y(x)) &#8801; <strong>2</strong>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>...</td>
+        </tr>
+      </table>
+
     </div>
   </div>
 

@@ -13,6 +13,12 @@ body {
   padding-top: 100px;
   text-align: center;
 }
+#sidebar_content {
+  padding-top: 42px;
+  padding-bottom: 8px;
+  background-repeat: repeat-x;
+  background-image: url(/images/bg_sidebar_gradient.png);
+}
 .yui-t4 {
   background-repeat: no-repeat;
   background-position: right top;
@@ -22,15 +28,6 @@ div.highlight {
   background-color: #f6f6f6;
   padding: 10px 12px 0 12px;
   margin-bottom: 12px;
-}
-#sidebar_content {
-  padding-top: 42px;
-  padding-bottom: 8px;
-  background-repeat: repeat-x;
-  background-image: url(/images/bg_sidebar_gradient.png);
-}
-.math {
-  margin-left: 6px;
 }
 .math td {
   border-width: 0;
