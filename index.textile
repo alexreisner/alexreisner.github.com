@@ -6,15 +6,19 @@ layout: skeleton
 <div id="bd">
 
   <ul id="navbar">
+    <li><a href="/">home</a></li>
     <li><a href="/code">code</a></li>
     <li><a href="/articles">articles</a></li>
-    <li><a href="/tidbits">tidbits</a></li>
     <li><a href="http://www.alexreisner.com/">other</a></li>
   </ul><br style="clear:both" />
 
   <div id="logo_container">
     !/images/logo_home.png!
   </div>
+
+  {% for i in site.categories %}
+  {{ i.name }}
+  {% endfor %}
 
   <div class="yui-gc">
     <div class="yui-u first">

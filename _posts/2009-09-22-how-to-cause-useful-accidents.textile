@@ -1,7 +1,7 @@
 ---
 title: How to Cause Useful Accidents
 layout: post
-categories: tidbits
+categories: articles
 ---
 If you do any visual design work you've probably discovered that many of the best results happen by accident. I start designing web pages in Adobe Illustrator or Photoshop but I usually create functional HTML and CSS mockups of my designs pretty quickly, one of the the main reasons being that it facilitates semi-controlled mutations. That is, to _cause an "accident"_ I apply various unrelated stylesheets from other sites, just to see what happens. A polished final design never results, but good ideas often do, and rigid thinking is often unclogged.
 

@@ -1,7 +1,7 @@
 ---
 title: Punting on Feedzirra Dependencies
 layout: post
-categories: tidbits
+categories: articles
 ---
 After watching Ryan Bates' "video on feed parsing":http://railscasts.com/episodes/168-feed-parsing I decided to give "Feedzirra":http://github.com/pauldix/feedzirra a try. Though I did eventually get the Feedzirra gem working, rounding up and installing the dependencies was painful enough that I decided not to use it.
 

@@ -1,8 +1,0 @@
----
-title: Tidbits
-layout: page
----
-<ul class="posts">{% for post in site.categories.tidbits %}
-  <li>{{ post.date | date_to_string }} &raquo; "{{ post.title }}":{{ post.url }}</li>
-{% endfor %}</ul>
-
