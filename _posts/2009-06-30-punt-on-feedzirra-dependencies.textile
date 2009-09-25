@@ -28,7 +28,7 @@ or if you wish to install manually:
 sudo gem install libxml-ruby
 {% endhighlight %}
 
-Any way you install it, I promise you will not end up in a dependency quagmire.
+The only dependency that might not be found in a standard *nix setup is the libxml development files, so you may need to install a package called @libxml2-dev@ (on Ubuntu) or @libxml-devel@ (on CentOS).
 
 
 h2. 2. Create a Model For Your Feed
@@ -40,7 +40,7 @@ script/generate model Tweet \
   guid:string url:string body:text published_at:datetime
 {% endhighlight %}
 
-and then add this class method to the skeleton ActiveRecord model:
+and then add this method to the skeleton ActiveRecord model:
 
 {% highlight ruby %}
 def self.update_from_feed
