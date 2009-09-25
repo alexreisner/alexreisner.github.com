@@ -3,17 +3,56 @@ title: Build Web Applications Using Static HTML
 layout: post
 categories: articles
 ---
-Imagine deploying a web application without having to do any server configuration. In fact, imagine deploying a web application by simply uploading a collection of static HTML files.
+As a (primarily) Ruby programmer I tend to reach for the Rails or Sinatra frameworks when creating a web site. The more complex the project the more likely I am to choose Rails, which provides more assistance in creating features like comments, content-editing interfaces, XML-based syndication, etc. But what if we could avoid implementing these features entirely? No matter how much help your framework gives you the job will never be as fast as not doing it at all.
 
-* create open source services (pay for hosting, or run your own) for managing via AJAX:
-  * comments (Disqus)
-  * syntax highlighting (Gist, Pastie)
-  * discussion (whatever Railscasts uses)
-  * email delivery
-* use CouchDB?
+Additionally, every feature you write means more code to maintain, and frequently you implement the same feature for many web sites which means tons of duplicated code. You might package a feature as a plugin (open source, I hope) so you can easily propagate changes to all of your sites, but you still need to pull the updates into each site individually and some kinds of updates may require changes to your application code. Plugins are _way_ better than copying code, but they're not perfect.
+
+The aspect-oriented programming term _cross-cutting concerns_ refers to tasks like logging and error-handling which cross-cut the application in that they defy abstraction into a single class and instead need to be implemented repeatedly wherever their functionality is needed. I'm going to abuse this term slightly and suggest that something similar is happening with features like comments, ratings, authentication, and image uploads if you consider your entire web site portfolio as a single work.
+
+Aspect-oriented programming solves the cross-cutting problem by _weaving_. I'm not sure that a similar technique can (or should) be used for multiple web applications, but by implementing features as services instead of plugins we can achieve the sort of auto-pull feature we seek. 
+
+h2. Browser-Level Services
+
+h3. Comments
+
+This web site is deployed as a collection of static HTML files (thanks to "Jekyll":http://github.com/mojombo/jekyll), but you can read and write comments because I'm using a service called "Disqus":http://disqus.com/ to provide this feature via JavaScript. I've added an application-like feature to a site without writing a single line of server-side code. The advantages of this approach are significant:
+
+# No time spent writing and debugging code
+# No code to maintain (unless the Disqus API changes)
+# Simple and inexpensive to host and deploy
+
+There are some obvious drawbacks to third-party comment hosting (solutions follow):
+
+# Disqus owns the comment data
+# Disqus controls the interface
+# No integration with my app (though there is no app in this case)
+# Comments are not Google-able
+
+Disqus does give you the ability to style the comments and also some control over the HTML so you don't give up the interface entirely. The biggest problem in my view, and it applies to all browser-level services, is that any data written to the page by JavaScript will not be indexed by search engines. For this site my posts are indexed and I'm thrilled to be able to provide comments with very little work as a bonus, but this could be a show-stopping concern for more community-oriented sites where comments play a larger role (no disrespect to potential commenters intended).
+
+The first two disadvantages can be dealt with by writing your own comment service and running it on a comment server which would support all of your applications. The latter two disadvantages are solved by using an application-level comment service which will be discussed below.
+
+
+Subjects:
+
+* comments (Disqus)
+* avatars (Gravatar)
+* syntax highlighting (Gist, Pastie)
+* discussion (whatever Railscasts uses)
+* analytics (Google)
+* email delivery
+* CouchDB
+
+
 
 Benefits:
 
 * no need to set up a optimized server for every app
-* no need to build the same functionality into every app
+* can set up server optimized for each feature
+* separation of concerns
+
+To-do:
+
+* new title
+* am I using AOP terms correctly? (esp 3rd, 4th paras)
 
