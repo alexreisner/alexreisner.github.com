@@ -63,6 +63,8 @@ Multi-part article?:
 Issues:
 
 * scalability of DRb and ARes
+* need to design architecture carefully
+  * Interface-Oriented Design book
 
 
 Benefits:
