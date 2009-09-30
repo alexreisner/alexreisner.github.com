@@ -3,13 +3,16 @@ title: Build Web Applications Using Static HTML
 layout: post
 categories: articles
 ---
+[Distributed app can be used for load balancing but also for efficient code re-use.]
+
 As a (primarily) Ruby programmer I tend to reach for the Rails or Sinatra frameworks when creating a web site. The more complex the project the more likely I am to choose Rails, which provides more assistance in creating features like comments, content-editing interfaces, XML-based syndication, etc. But what if we could avoid implementing these features entirely? No matter how much help your framework gives you the job will never be as fast as not doing it at all.
 
 Additionally, every feature you write means more code to maintain, and frequently you implement the same feature for many web sites which means tons of duplicated code. You might package a feature as a plugin (open source, I hope) so you can easily propagate changes to all of your sites, but you still need to pull the updates into each site individually and some kinds of updates may require changes to your application code. Plugins are _way_ better than copying code, but they're not perfect.
 
 The aspect-oriented programming term _cross-cutting concerns_ refers to tasks like logging and error-handling which cross-cut the application in that they defy abstraction into a single class and instead need to be implemented repeatedly wherever their functionality is needed. I'm going to abuse this term slightly and suggest that something similar is happening with features like comments, ratings, authentication, and image uploads if you consider your entire web site portfolio as a single work.
 
-Aspect-oriented programming solves the cross-cutting problem by _weaving_. I'm not sure that a similar technique can (or should) be used for multiple web applications, but by implementing features as services instead of plugins we can achieve the sort of auto-pull feature we seek. 
+Aspect-oriented programming solves the cross-cutting problem by _weaving_. I'm not sure that a similar technique can (or should) be used for multiple web applications, but by implementing features as services instead of plugins we can achieve the sort of auto-pull or feature-as-an-app behavior we seek. 
+
 
 h2. Browser-Level Services
 
@@ -33,26 +36,49 @@ Disqus does give you the ability to style the comments and also some control ove
 The first two disadvantages can be dealt with by writing your own comment service and running it on a comment server which would support all of your applications. The latter two disadvantages are solved by using an application-level comment service which will be discussed below.
 
 
-Subjects:
+Multi-part article?:
 
-* comments (Disqus)
-* avatars (Gravatar)
-* syntax highlighting (Gist, Pastie)
-* discussion (whatever Railscasts uses)
-* analytics (Google)
-* email delivery
-* CouchDB
+* JS services
+  * comments (Disqus)
+  * syntax highlighting (Gist, Pastie)
+  * discussion (whatever Railscasts uses)?
+  * analytics (Google)
+  * CouchDB (once auth model is implemented)
+  
+* app services
+  * avatars (Gravatar)
+  * photos (Flickr)
+  * authentication (OpenID)
+  * email delivery
 
+* custom app services 
+  * DRb services (included in app services? for writing your own)
+    * Mack (discontiued: http://www.metabates.com/2009/03/04/thank-you/)
+    * watch RubyConf video on distributed apps
+    * Mark Bates' book
+  * memcached
+  * ActiveResource
+
+
+Issues:
+
+* scalability of DRb and ARes
+* need to design architecture carefully
+  * Interface-Oriented Design book
 
 
 Benefits:
 
-* no need to set up a optimized server for every app
+* easier to set up each app server
 * can set up server optimized for each feature
 * separation of concerns
+* less code in each app
+* Google Chrome will improve JS performance
+
 
 To-do:
 
 * new title
+  * Distributed Web Applications
 * am I using AOP terms correctly? (esp 3rd, 4th paras)
 
