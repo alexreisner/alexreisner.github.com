@@ -1,0 +1,8 @@
+---
+title: Build Web Applications Using Static HTML
+layout: post
+categories: articles
+---
+Ian Bicking posted the text of his keynote talk at DjangoCon two weeks ago and I thoroughly enjoyed reading it. He spoke about a definition of "open source" which is not just a non-restrictive software license but rather a culture and a set of political values. He also sought a _positive_ definition, as opposed to "you _don't_ charge money for it" or "you _don't_ ...".
+
+This is a topic I wish were being talked about more. So I thought I'd summarize 

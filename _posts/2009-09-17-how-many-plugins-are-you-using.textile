@@ -1,9 +1,0 @@
----
-title: How Many Plugins Are You Using?
-layout: post
-categories: articles
----
-To get client work done quickly one must take advantage of existing open source code and also make efficient re-use of one's own code. Rails plugins and gems are the obvious way to do this, and I sometimes wonder how much of an application can be contained in plugins.
-
-
-* plugins vs using services to provide features
