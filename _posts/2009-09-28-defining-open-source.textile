@@ -1,5 +1,5 @@
 ---
-title: Build Web Applications Using Static HTML
+title: Defining Open Source
 layout: post
 categories: articles
 ---
