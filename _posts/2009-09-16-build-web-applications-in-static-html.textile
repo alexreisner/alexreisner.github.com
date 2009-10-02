@@ -18,22 +18,20 @@ Programmers have been using services like "Pastie":http://pastie.org and "Gist":
 
 <!-- Slide shows can be displayed, as demonstrated by "Flickrshow":http://www.flickrshow.com, and "AddThis":http://www.addthis.com will allow users to quickly "share" your site via Digg, Delicious, FaceSpace, and TwitUpon. -->
 
-These are third-party solutions, so the providers own your data. What I'd like to see, and what I suspect we will start to see soon, is open source versions of this type of service which would give us back our data, as well as control of the interface.
+These are third-party solutions so the providers own your data. What I'd like to see, and what I suspect we will start to see soon, is open source versions of this type of service which would give us back our data, as well as control of the interface.
 
-[
-* ActiveResource
-* need to design architecture carefully
-  * Interface-Oriented Design book
-]
+Rails' ActiveResource could be used as a foundation for such a service. I'm also somewhat optimistic about Apache's "CouchDB":http://couchdb.apache.org as an engine for these services. Its native interface is HTTP, its query language is JavaScript, and it can serve HTML so it integrates easily with existing tools and techniques. It's currently at version 0.9.1 and probably not stable enough for serious production use, but I believe it will be soon.
 
-I'm somewhat optimistic about Apache's "CouchDB":http://couchdb.apache.org as an engine for these services. Its native interface is HTTP, its query language is JavaScript, and it can serve HTML so it integrates easily with existing tools and techniques. It's currently at version 0.9.1 and probably not stable enough for serious production use, but I believe it will be soon.
+"Interface-Oriented Design":http://www.pragprog.com/titles/kpiod/interface-oriented-design is a book published by "Pragmatic Programmers":http://www.pragprog.com which discusses many of the problems involved in designing such services. I recommend it to anyone conteplating getting involved. It's an oldie but a goodie (still relevant, and will remain so for a while since it's about design principles rather than specific technologies).
 
 
 h2. The Big Caveat
 
-Sorry to say, there is a major problem with all of this, which is the limiting factor in how far we can practically take this idea of static HTML web applications: Google. 
+Sorry to say, there is a major problem with all of this, which is the limiting factor in how far we can practically take this idea of static HTML web applications: Google. As of now, Google does not index content added to a page by JavaScript. With Disqus comments this isn't ideal, but it isn't terrible either; at least your writing is searchable. It's not too bad in the case of images or code either, but it means that you don't really want any vital content to be provided by a JavaScript service.
 
+*However,* I believe--and this is very unofficial--that Google will eventually index this type of content. I have seen evidence of their spiders on my own sites poking at AJAX-only URLs. Repeat: I have no evidence that this means anything, I am simply guessing. If I were Google, I'd be working on it.
 
+If you're still with me on this, let me be more specific. I believe that Google will index content added _automatically_ after a page is loaded. This includes all of the technologies I've discussed so far which simply fetch content as they are rendered by the browser. I am not as hopeful about content that is added to the page after a button or link is clicked (such as with AJAX pagination).
 
 
 
