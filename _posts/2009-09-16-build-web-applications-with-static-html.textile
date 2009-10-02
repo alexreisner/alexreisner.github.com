@@ -1,39 +1,40 @@
 ---
-title: Build Web Applications Using Static HTML
+title: Build Web Applications In Static HTML
 layout: post
 categories: articles
 ---
-[Distributed app can be used for load balancing but also for efficient code re-use.]
+If you enjoy writing small web applications in web microframeworks like Sinatra or web.py, consider this: no matter how quick and easy it is to write and deploy, your app will never be as quick and easy as no app at all.
 
-As a (primarily) Ruby programmer I tend to reach for the Rails or Sinatra frameworks when creating a web site. The more complex the project the more likely I am to choose Rails, which provides more assistance in creating features like comments, content-editing interfaces, XML-based syndication, etc. But what if we could avoid implementing these features entirely? No matter how much help your framework gives you the job will never be as fast as not doing it at all.
+Every feature you implement means more code to maintain, and frequently you use the same feature for many web sites resulting in tons of duplicated code. You might package a feature as a plugin or gem for easy propagation to all of your sites, but upgrades may still require adjustments to database structure or application code.
 
-Additionally, every feature you write means more code to maintain, and frequently you implement the same feature for many web sites which means tons of duplicated code. You might package a feature as a plugin (open source, I hope) so you can easily propagate changes to all of your sites, but you still need to pull the updates into each site individually and some kinds of updates may require changes to your application code. Plugins are _way_ better than copying code, but they're not perfect.
+What I'm getting at is this: what if you could forget about writing web applications entirely and just deploy some static HTML files, like in 1995 before you learned Perl?
 
-The aspect-oriented programming term _cross-cutting concerns_ refers to tasks like logging and error-handling which cross-cut the application in that they defy abstraction into a single class and instead need to be implemented repeatedly wherever their functionality is needed. I'm going to abuse this term slightly and suggest that something similar is happening with features like comments, ratings, authentication, and image uploads if you consider your entire web site portfolio as a single work.
-
-Aspect-oriented programming solves the cross-cutting problem by _weaving_. I'm not sure that a similar technique can (or should) be used for multiple web applications, but by implementing features as services instead of plugins we can achieve the sort of auto-pull or feature-as-an-app behavior we seek. 
+This web site you are reading now is deployed as a collection of static HTML files (thanks to "Jekyll":http://github.com/mojombo/jekyll), but you can read and write comments because I'm using a service called "Disqus":http://disqus.com/ to provide them via JavaScript. I've added an application-like feature to a site without writing a single line of server-side code. I can deploy by uploading some files and telling Apache where they are. Sound appealing? It does to me.
 
 
-h2. Browser-Level Services
+h2. Beyond Comments
 
-h3. Comments
+Programmers have been using services like "Pastie":http://pastie.org and "Gist":http://gist.github.com to add syntax highlighting to their sites which, like this one, could be implemented with static HTML. There are also services which offer entire customer feedback and discussion systems like "Uservoice":http://uservoice.com.
 
-This web site is deployed as a collection of static HTML files (thanks to "Jekyll":http://github.com/mojombo/jekyll), but you can read and write comments because I'm using a service called "Disqus":http://disqus.com/ to provide this feature via JavaScript. I've added an application-like feature to a site without writing a single line of server-side code. The advantages of this approach are significant:
+<!-- Slide shows can be displayed, as demonstrated by "Flickrshow":http://www.flickrshow.com, and "AddThis":http://www.addthis.com will allow users to quickly "share" your site via Digg, Delicious, FaceSpace, and TwitUpon. -->
 
-# No time spent writing and debugging code
-# No code to maintain (unless the Disqus API changes)
-# Simple and inexpensive to host and deploy
+These are third-party solutions, so the providers own your data. What I'd like to see, and what I suspect we will start to see soon, is open source versions of this type of service which would give us back our data, as well as control of the interface.
 
-There are some obvious drawbacks to third-party comment hosting (solutions follow):
+[
+* ActiveResource
+* need to design architecture carefully
+  * Interface-Oriented Design book
+]
 
-# Disqus owns the comment data
-# Disqus controls the interface
-# No integration with my app (though there is no app in this case)
-# Comments are not Google-able
+I'm somewhat optimistic about Apache's "CouchDB":http://couchdb.apache.org as an engine for these services. Its native interface is HTTP, its query language is JavaScript, and it can serve HTML so it integrates easily with existing tools and techniques. It's currently at version 0.9.1 and probably not stable enough for serious production use, but I believe it will be soon.
 
-Disqus does give you the ability to style the comments and also some control over the HTML so you don't give up the interface entirely. The biggest problem in my view, and it applies to all browser-level services, is that any data written to the page by JavaScript will not be indexed by search engines. For this site my posts are indexed and I'm thrilled to be able to provide comments with very little work as a bonus, but this could be a show-stopping concern for more community-oriented sites where comments play a larger role (no disrespect to potential commenters intended).
 
-The first two disadvantages can be dealt with by writing your own comment service and running it on a comment server which would support all of your applications. The latter two disadvantages are solved by using an application-level comment service which will be discussed below.
+h2. The Big Caveat
+
+Sorry to say, there is a major problem with all of this, which is the limiting factor in how far we can practically take this idea of static HTML web applications: Google. 
+
+
+
 
 
 Multi-part article?:
@@ -44,6 +45,7 @@ Multi-part article?:
   * discussion (whatever Railscasts uses)?
   * analytics (Google)
   * CouchDB (once auth model is implemented)
+  * guest book (JibberBook)
   
 * app services
   * avatars (Gravatar)
@@ -59,12 +61,6 @@ Multi-part article?:
   * memcached
   * ActiveResource
 
-
-Issues:
-
-* scalability of DRb and ARes
-* need to design architecture carefully
-  * Interface-Oriented Design book
 
 
 Benefits:
