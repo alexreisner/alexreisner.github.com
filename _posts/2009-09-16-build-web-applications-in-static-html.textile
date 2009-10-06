@@ -5,74 +5,37 @@ categories: articles
 ---
 If you enjoy writing small web applications in web microframeworks like Sinatra or web.py, consider this: no matter how quick and easy it is to write and deploy, your app will never be as quick and easy as no app at all.
 
-Every feature you implement means more code to maintain, and frequently you use the same feature for many web sites resulting in tons of duplicated code. You might package a feature as a plugin or gem for easy propagation to all of your sites, but upgrades may still require adjustments to database structure or application code.
+Every feature you implement means more code to maintain, and frequently you use the same feature for many web sites, resulting in a lot of duplicated code. You can package a feature as a plugin or gem for easy propagation to all of your sites, but upgrades may still require adjustments to database structure or application code, and you still have to re-install the plugins or update your gems manually which can be very time consuming if you have 20 or 40 sites sharing the code.
 
-What I'm getting at is this: what if you could forget about writing web applications entirely and just deploy some static HTML files, like in 1995 before you learned Perl?
+What if you could forget about writing web applications entirely and just deploy some static HTML files, like in 1995 before you learned Perl?
 
-This web site you are reading now is deployed as a collection of static HTML files (thanks to "Jekyll":http://github.com/mojombo/jekyll), but you can read and write comments because I'm using a service called "Disqus":http://disqus.com/ to provide them via JavaScript. I've added an application-like feature to a site without writing a single line of server-side code. I can deploy by uploading some files and telling Apache where they are. Sound appealing? It does to me.
+This web site you are reading now is deployed as a collection of static HTML files (thanks to "Jekyll":http://github.com/mojombo/jekyll), but you can read and write comments because I'm using a service called "Disqus":http://disqus.com/ to provide them via JavaScript. I've added an application-like feature to a site without writing a single line of server-side code. I can deploy by uploading some files and telling Apache where they are. How far can we take this? Well...
 
 
 h2. Beyond Comments
 
 Programmers have been using services like "Pastie":http://pastie.org and "Gist":http://gist.github.com to add syntax highlighting to their sites which, like this one, could be implemented with static HTML. There are also services which offer entire customer feedback and discussion systems like "Uservoice":http://uservoice.com.
 
-<!-- Slide shows can be displayed, as demonstrated by "Flickrshow":http://www.flickrshow.com, and "AddThis":http://www.addthis.com will allow users to quickly "share" your site via Digg, Delicious, FaceSpace, and TwitUpon. -->
+In addition to pulling data into a site, we can push data out for processing and possibly for re-display at a later time. You've likely heard of "Google Analytics":http://www.google.com/analytics, which collects and analyzes web page usage data in this fashion.
 
-These are third-party solutions so the providers own your data. What I'd like to see, and what I suspect we will start to see soon, is open source versions of this type of service which would give us back our data, as well as control of the interface.
+These are third-party solutions so the providers own your data. What I'd like to see, and what I suspect we will start to see soon, is open source versions of this type of service which would give us back our data, as well as control of the interface. "Rifgraf":http://rifgraf.heroku.com/ is one such open source web service which will collect and graph whatever numeric data you send it (like a simple, generalized Analytics).
 
-Rails' ActiveResource could be used as a foundation for such a service. I'm also somewhat optimistic about Apache's "CouchDB":http://couchdb.apache.org as an engine for these services. Its native interface is HTTP, its query language is JavaScript, and it can serve HTML so it integrates easily with existing tools and techniques. It's currently at version 0.9.1 and probably not stable enough for serious production use, but I believe it will be soon.
+If you're familiar with Rails you should probably consider ActiveResource as a foundation when designing your own web service. It may not be your ultimate answer, but it may get you up and running quickly, and it integrates very easily with your Rails apps and standard XML-eating JavaScript libraries. I'm also somewhat optimistic about Apache's "CouchDB":http://couchdb.apache.org as an engine for these services. Its native interface is HTTP, its query language is JavaScript, and it can serve HTML. It's currently at version 0.9.1 and probably not stable enough for serious production use, but I believe it will be soon.
 
 "Interface-Oriented Design":http://www.pragprog.com/titles/kpiod/interface-oriented-design is a book published by "Pragmatic Programmers":http://www.pragprog.com which discusses many of the problems involved in designing such services. I recommend it to anyone conteplating getting involved. It's an oldie but a goodie (still relevant, and will remain so for a while since it's about design principles rather than specific technologies).
 
 
 h2. The Big Caveat
 
-Sorry to say, there is a major problem with all of this, which is the limiting factor in how far we can practically take this idea of static HTML web applications: Google. As of now, Google does not index content added to a page by JavaScript. With Disqus comments this isn't ideal, but it isn't terrible either; at least your writing is searchable. It's not too bad in the case of images or code either, but it means that you don't really want any vital content to be provided by a JavaScript service.
+Sorry to say, there is a major problem with all of this, which is the limiting factor in how far we can practically take this idea of static HTML web applications: Google. As of now, Google does not index content added to a page by JavaScript. With Disqus comments this isn't ideal, but it isn't terrible either; at least your posted content is searchable. It's not too bad in the case of images or code snippets either, but it means that you don't really want any vital content to be provided by a JavaScript service.
 
-*However,* I believe--and this is very unofficial--that Google will eventually index this type of content. I have seen evidence of their spiders on my own sites poking at AJAX-only URLs. Repeat: I have no evidence that this means anything, I am simply guessing. If I were Google, I'd be working on it.
+However, I believe--and this is very unofficial--that Google will eventually index this type of content. I have seen evidence of their spiders on my own sites poking at AJAX-only URLs. Repeat: I have no evidence that this means anything, I am simply guessing. If I were Google, I'd be working on it.
 
 If you're still with me on this, let me be more specific. I believe that Google will index content added _automatically_ after a page is loaded. This includes all of the technologies I've discussed so far which simply fetch content as they are rendered by the browser. I am not as hopeful about content that is added to the page after a button or link is clicked (such as with AJAX pagination).
 
 
+h2. Conclusion
 
-Multi-part article?:
+I encourage you to consider the idea that functionality, and even data, can live outside of your web appli...I mean HTML files. We're accustomed to avoiding code duplication within a project, but what about code duplication within our _portfolio_? By considering all of our sites as a unit I hope we can lessen the pains of maintenance and prevent long-running sites from turning into un-upgradeable relics that we "never want to look at again."
 
-* JS services
-  * comments (Disqus)
-  * syntax highlighting (Gist, Pastie)
-  * discussion (whatever Railscasts uses)?
-  * analytics (Google)
-  * CouchDB (once auth model is implemented)
-  * guest book (JibberBook)
-  
-* app services
-  * avatars (Gravatar)
-  * photos (Flickr)
-  * authentication (OpenID)
-  * email delivery
-
-* custom app services 
-  * DRb services (included in app services? for writing your own)
-    * Mack (discontiued: http://www.metabates.com/2009/03/04/thank-you/)
-    * watch RubyConf video on distributed apps
-    * Mark Bates' book
-  * memcached
-  * ActiveResource
-
-
-
-Benefits:
-
-* easier to set up each app server
-* can set up server optimized for each feature
-* separation of concerns
-* less code in each app
-* Google Chrome will improve JS performance
-
-
-To-do:
-
-* new title
-  * Distributed Web Applications
-* am I using AOP terms correctly? (esp 3rd, 4th paras)
-
+If planned carefully, I think we can use this kind of distributed application design as a way to _simplify_ our sites, even if we don't go all the way back to static HTML.
