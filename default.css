@@ -38,15 +38,15 @@ div.highlight {
 
 
 /* --- Typography --- */
-ul.posts li {
-  list-style-type: none;
+ul {
+  padding-left: 18px;
 }
 ul.posts {
   padding-left: 0;
 	margin-top: 0;
 }
-ul {
-  padding-left: 18px;
+ul.posts li {
+  list-style-type: none;
 }
 h1 {
   font-weight: bold;
