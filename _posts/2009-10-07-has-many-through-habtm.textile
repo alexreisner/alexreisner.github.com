@@ -1,0 +1,59 @@
+---
+title: Simulate Has Many Through HABTM
+layout: post
+categories: articles
+---
+If you work much with Rails and ActiveRecord you may have noticed that a certain commonly-used association is not allowed. I will show you how to simulate it. Let's say you have the following models and relationships:
+
+{% highlight ruby %}
+class Article < ActiveRecord::Base
+  has_and_belongs_to_many :categories
+end
+
+class Category < ActiveRecord::Base
+  belongs_to :section
+end
+
+class Section < ActiveRecord::Base
+  has_many :categories
+end
+{% endhighlight %}
+
+Now you want to find all the articles in a section, so you try the obvious solution, adding the following to @Section@:
+
+{% highlight ruby %}
+has_many :articles, :though => :categories
+{% endhighlight %}
+
+This relationships seem reasonable enough, but an exception will be raised:
+
+{% highlight erb %}
+ActiveRecord::HasManyThroughSourceAssociationMacroError:
+Invalid source reflection macro :has_and_belongs_to_many
+for has_many :articles, :through => :categories.
+Use :source to specify the source reflection.
+{% endhighlight %}
+
+Don't waste time trying to find the right @:source@. The @has_many@ association @through@ a @has_and_belongs_to_many@ is simply not allowed in Rails 2.3.4. But you can define a @Section#articles@ method that returns a nice @ActiveRecord::NamedScope@ proxy by adding this named scope to your @Article@ class:
+
+{% highlight ruby %}
+named_scope :in_section, lambda{ |section|
+  {
+    :joins      => :categories,
+    :conditions => {:categories => {:id => section.category_ids}},
+    :select     => "DISTINCT `articles`.*" # kill duplicates
+  }
+}
+{% endhighlight %}
+
+and this method to your @Section@ class:
+
+{% highlight ruby %}
+def articles
+  Article.in_section(self)
+end
+{% endhighlight %}
+
+Now, since this is a pure named scope, you can do things like @section.articles.published.recent@. If you use this association a lot you could even abstract it to a plugin. Open source, please!
+
+
