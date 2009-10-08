@@ -3,19 +3,38 @@ title: Informant
 layout: post
 categories: code
 ---
-"Informant":http://github.com/alexreisner/informant is a full-featured form builder for Ruby on Rails which promotes a simple syntax that keeps your views clean. Everything about a field (label, description, error display, etc) is encapsulated in a single method call. For example:
+"Informant":http://github.com/alexreisner/informant is a full-featured form builder for Ruby on Rails which promotes a simple syntax that keeps your views clean. Everything about a field (label, description, error display, etc) is encapsulated in a single method call.
+
+All field methods accept an options hash like the standard Rails FormBuilder methods, but with some extra features available. The simplest field takes just an object attribute name:
+
+<div id="car_name_field" class="informant_field">
+  <label for="car_name">Name</label>
+  <input type="text" id="car_name" name="car[name]" value="" />
+</div>
 
 {% highlight erb %}
 <%= f.text_field :name %>
 {% endhighlight %}
 
-renders something like this (in a field for a @@car@):
+The label is inferred from the field name but can be specified manually with the @:label@ option. The second argument to a select field should be an array of options in the same format as used for the default Rails FormBuilder.
 
-{% highlight html %}
-<div id="car_name_field" class="field">
-  <label for="car_name">Name</label><br />
-  <input type="text" id="car_name" name="car[name]" value="" />
+<div id="car_manufacturer_field" class="informant_field">
+  <label for="car_manufacturer">Brand <span class="required">*</span></label>
+  <select id="car_manufacturer" name="car[manufacturer]">
+    <option value=""></option>
+    <option value="Ascari">Ascari</option>
+    <option value="Ferrari">Ferrari</option>
+    <option value="Lamborghini">Lamborghini</option>
+    <option value="Pagani">Pagani</option>
+  </select>
 </div>
+      
+{% highlight erb %}
+<%= f.select :manufacturer,
+  Manufacturer.all.map{ |m| [m.name, m.id] },
+  :label         => "Brand",
+  :include_blank => true,
+  :required      => true %>
 {% endhighlight %}
 
 Each field can have a label, a required-field marker, some descriptive text, decoration (such as a spinner for AJAX calls), and more. Three form layouts are included (Standard, Table, and Simple), which can be easily customized. Informant will make your form code shorter and more readable.
