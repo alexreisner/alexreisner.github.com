@@ -25,7 +25,7 @@ Now you want to find all the articles in a section, so you try the obvious solut
 has_many :articles, :though => :categories
 {% endhighlight %}
 
-This relationships seem reasonable enough, but an exception will be raised:
+This relationship seems reasonable enough, but an exception will be raised:
 
 {% highlight erb %}
 ActiveRecord::HasManyThroughSourceAssociationMacroError:
@@ -34,7 +34,7 @@ for has_many :articles, :through => :categories.
 Use :source to specify the source reflection.
 {% endhighlight %}
 
-Don't waste time trying to find the right @:source@. The @has_many@ association @through@ a @has_and_belongs_to_many@ is simply not allowed in Rails 2.3.4. But you can define a @Section#articles@ method that returns a nice @ActiveRecord::NamedScope@ proxy by adding this named scope to your @Article@ class:
+Don't waste time trying to find the right @:source@. The @has_many@ association through a @has_and_belongs_to_many@ is simply not allowed in Rails 2.3.4, but you can get the behavior you want by defining a @Section#articles@ method that returns a nice @ActiveRecord::NamedScope@ proxy. Just add this named scope to your @Article@ class:
 
 {% highlight ruby %}
 named_scope :in_section, lambda{ |section|
@@ -46,7 +46,7 @@ named_scope :in_section, lambda{ |section|
 }
 {% endhighlight %}
 
-and this method to your @Section@ class:
+and add this method to your @Section@ class:
 
 {% highlight ruby %}
 def articles
