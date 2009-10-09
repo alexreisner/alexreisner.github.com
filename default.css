@@ -40,12 +40,21 @@ body {
 
 /* --- Forms (for Informant article) --- */
 .informant_field {
+  border: none;
 	margin-bottom: 0;
 	border-bottom-width:0;
 }
 .informant_field label {
   display: block;
   font-weight: bold;
+}
+.informant_field .description {
+  margin-top: -8px;
+  font-size: 85%;
+}
+#car_features_field label {
+  display: inline;
+  font-weight: normal;
 }
 input, select, textarea {
 	background-color: white;

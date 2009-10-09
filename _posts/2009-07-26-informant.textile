@@ -3,7 +3,7 @@ title: Informant
 layout: post
 categories: code
 ---
-"Informant":http://github.com/alexreisner/informant is a full-featured form builder for Ruby on Rails which promotes a simple syntax that keeps your views clean. Everything about a field (label, description, error display, etc) is encapsulated in a single method call.
+"Informant":http://github.com/alexreisner/informant is a full-featured form builder for Ruby on Rails which promotes a simple syntax that keeps your views clean. Everything about a field (label, description, error display, etc) is encapsulated in a single method call. Three form layouts are included (Standard, Table, and Simple) and custom layouts can be created easily (write a new class, inherit, and overwrite whatever field templates you want).
 
 All field methods accept an options hash like the standard Rails FormBuilder methods, but with some extra features available. The simplest field takes just an object attribute name:
 
@@ -27,6 +27,7 @@ The label is inferred from the field name but can be specified manually with the
     <option value="Lamborghini">Lamborghini</option>
     <option value="Pagani">Pagani</option>
   </select>
+  <p class="description">Please choose an Italian manufacturer.</p>
 </div>
       
 {% highlight erb %}
@@ -34,9 +35,26 @@ The label is inferred from the field name but can be specified manually with the
   Manufacturer.all.map{ |m| [m.name, m.id] },
   :label         => "Brand",
   :include_blank => true,
-  :required      => true %>
+  :required      => true,
+  :description   => "Please choose an Italian manufacturer." %>
 {% endhighlight %}
 
-Each field can have a label, a required-field marker, some descriptive text, decoration (such as a spinner for AJAX calls), and more. Three form layouts are included (Standard, Table, and Simple), which can be easily customized. Informant will make your form code shorter and more readable.
+In addition to the standard Rails FormBuilder options, you can also specify a label, a required marker, some descriptive text, decoration (such as a spinner for use with AJAX calls), and more. There are also some custom field types, such as @radio_buttons@ (for a set of radio buttons) and @habtm_check_boxes@:
 
-For complete up-to-date documentation see the "Informant project at GitHub":http://github.com/alexreisner/informant.
+<div id="car_features_field" class="informant_field">
+  <label for="car_feature_ids" style="font-weight:bold">Features</label><br />
+  <input type="checkbox" id="car_feature_ids_1" name="car[feature_ids][]" value="1" /> <label for="car_feature_ids_1">power windows</label><br />
+  <input type="checkbox" id="car_feature_ids_2" name="car[feature_ids][]" value="2" /> <label for="car_feature_ids_2">gas guzzler tax</label><br />
+  <input type="checkbox" id="car_feature_ids_3" name="car[feature_ids][]" value="3" /> <label for="car_feature_ids_3">free cologne</label><br />
+  <input type="checkbox" id="car_feature_ids_4" name="car[feature_ids][]" value="4" /> <label for="car_feature_ids_4">full-length mirror</label><br />
+  <input type="checkbox" id="car_feature_ids_5" name="car[feature_ids][]" value="5" /> <label for="car_feature_ids_5">midlife crisis</label><br />
+</div>
+      
+{% highlight erb %}
+<%= f.habtm_check_boxes :feature_ids,
+  Feature.all.map{ |m| [m.name, m.id] } %>
+{% endhighlight %}
+
+Note that this method takes an array of choices just like a select field. It also handles the all-unchecked case so you don't have to deal with it in the controller (if you've ever set up has_and_belongs_to_many checkboxes you're familiar with this problem).
+
+In short, Informant will make your form code shorter and more readable. For complete API documentation see the "Informant project at GitHub":http://github.com/alexreisner/informant.
