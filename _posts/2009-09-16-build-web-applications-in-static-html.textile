@@ -1,6 +1,6 @@
 ---
 title: Build Web Applications In Static HTML
-layout: post
+layout: article
 categories: articles
 ---
 If you enjoy writing small web applications in web microframeworks like Sinatra or web.py, consider this: no matter how quick and easy it is to write and deploy, your app will never be as quick and easy as no app at all.

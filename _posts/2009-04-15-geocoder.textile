@@ -1,8 +1,10 @@
 ---
 title: Geocoder
-layout: post
+layout: code
 categories: code
 ---
+<p class="date">Updated 1 Oct 2009</p>
+
 "Geocoder":http://github.com/alexreisner/geocoder (aka the rails-geocoder gem) adds object geocoding and database-agnostic distance calculations to Ruby on Rails (specifically ActiveRecord). It does not rely on proprietary database functions so finding geocoded objects in a given area is easily done using out-of-the-box MySQL or even SQLite. The code is distributed as a Ruby gem and as a Rails plugin so you can install it either way.
 
 Distance calculations are performed using the haversine formula (which assumes the Earth is a sphere) so they are not drop-dead accurate, but they're pretty good. Google is used to fetch latitude and longitude coordinates so you must have an Internet connection for the initial fetching, but the coordinates are stored locally so inter-object distance computations are very fast.

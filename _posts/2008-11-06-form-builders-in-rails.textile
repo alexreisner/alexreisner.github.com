@@ -1,6 +1,6 @@
 ---
 title: Form Builders in Rails
-layout: post
+layout: article
 categories: articles
 ---
 _Update 26 July 2009: for some ready-made form builders that may suit your needs please see my "Informant":/code/informant.html plugin._

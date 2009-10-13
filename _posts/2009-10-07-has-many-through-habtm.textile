@@ -1,6 +1,6 @@
 ---
 title: Simulate Has Many Through HABTM
-layout: post
+layout: article
 categories: articles
 ---
 If you work much with Rails and ActiveRecord you may have noticed that a certain commonly-used association is not allowed. I will show you how to simulate it. Let's say you have the following models and relationships:

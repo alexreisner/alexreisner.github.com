@@ -1,8 +1,10 @@
 ---
 title: Informant
-layout: post
+layout: code
 categories: code
 ---
+<p class="date">Updated 9 Oct 2009</p>
+
 "Informant":http://github.com/alexreisner/informant is a full-featured form builder for Ruby on Rails which promotes a simple syntax that keeps your views clean. Everything about a field (label, description, error display, etc) is encapsulated in a single method call. Three form layouts are included (Standard, Table, and Simple) and custom layouts can be created easily (write a new class, inherit, and overwrite whatever field templates you want).
 
 All field methods accept an options hash like the standard Rails FormBuilder methods, but with some extra features available. The simplest field takes just an object attribute name:
