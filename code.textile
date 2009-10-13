@@ -2,7 +2,25 @@
 title: Code
 layout: page
 ---
-<ul class="posts">{% for post in site.categories.code %}
-  <li>{{ post.date | date_to_string }} &raquo; "{{ post.title }}":{{ post.url }}</li>
-{% endfor %}</ul>
+The following are open source projects I develop and maintain.
+
+
+h2. Informant
+
+Full-featured form builder for Rails with a simple syntax that keeps your views clean.
+*"repo":http://github.com/alexreisner/informant* | *"about":/code/informant.html* | *"doc":http://rdoc.info/projects/alexreisner/informant* | *"gem":http://gemcutter.org/gems/informant*
+
+
+h2. Geocoder
+
+Object geocoding and database-agnostic distance calculations for Ruby on Rails.
+*"repo":http://github.com/alexreisner/geocoder* | *"about":/code/geocoder.html* | *"gem":http://gemcutter.org/gems/rails-geocoder*
+
+
+h2. Handler
+
+Automatically generate filesystem- and URL-friendly names for ActiveRecord models.
+*"repo":http://github.com/alexreisner/handler* | *"gem":http://gemcutter.org/gems/handler*
+
+
 
