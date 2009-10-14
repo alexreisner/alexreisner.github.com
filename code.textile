@@ -23,4 +23,10 @@ Automatically generate filesystem- and URL-friendly names for ActiveRecord model
 *"repo":http://github.com/alexreisner/handler* | *"gem":http://gemcutter.org/gems/handler*
 
 
+h2. Google Custom Search
+
+Ruby API to Google Custom Search Engine (XML results).
+*"repo":http://github.com/alexreisner/google_custom_search* | *"about":/code/google-custom-search.html* | *"gem":http://gemcutter.org/gems/google_custom_search*
+
+
 
