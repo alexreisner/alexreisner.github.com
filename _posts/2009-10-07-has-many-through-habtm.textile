@@ -54,6 +54,6 @@ def articles
 end
 {% endhighlight %}
 
-Now, since this is a pure named scope, you can do things like @section.articles.published.recent@. If you use this association a lot you could even abstract it to a plugin. Open source, please!
+Now, since this is a pure named scope, you can do things like @section.articles.published.recent@. This technique also works in situations where you're stopped by a polymorphic association. If you find yourself using this technique a lot you might want to abstract it to a plugin. Open source, please!
 
 
