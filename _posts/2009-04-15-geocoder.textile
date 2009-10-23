@@ -9,14 +9,18 @@ categories: code
 
 Distance calculations are performed using the haversine formula (which assumes the Earth is a sphere) so they are not drop-dead accurate, but they're pretty good. Google is used to fetch latitude and longitude coordinates so you must have an Internet connection for the initial fetching, but the coordinates are stored locally so inter-object distance computations are very fast.
 
-The named scopes and other things you can do with Geocoder:
+Assuming @Venue@ is a geocoded model, you get these named scopes:
 
 {% highlight ruby %}
 Venue.near('Omaha, NE, US', 20)   # venues w/in 20 mi of Omaha
 Venue.near([40.71, 100.23], 20)   # venues w/in 20 mi of point
 Venue.geocoded                    # venues with coordinates
 Venue.not_geocoded                # venues without coordinates
+{% endhighlight %}
 
+and these instance methods:
+
+{% highlight ruby %}
 obj.fetch_coordinates             # returns [lat, lon]
 obj.fetch_coordinates!            # also writes to object
 
