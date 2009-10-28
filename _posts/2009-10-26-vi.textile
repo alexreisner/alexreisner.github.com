@@ -1,0 +1,36 @@
+---
+title: The Influence of vi
+layout: article
+categories: articles
+---
+About a year ago I switched to Google for hosting my email. I never thought I'd be able to use an email reader that didn't run locally and store messages in mbox format, but Gmail's responsive interface and brilliant labeling system (folders were never really quite right) convinced me otherwise.
+
+Another deciding factor was Gmail's _Keyboard Shortcuts_ (if you haven't enabled them I highly recommend that you do, then type '?'), which made the responsive interface even quicker. But it wasn't until recently that I suddenly realized part of why the keyboard shortcuts seemed so natural: some of them are taken from vi! Specifically:
+
+j = down
+k = up
+/ = search
+
+This made me wonder where else vi's influence could be found, and I thought I'd share the following links:
+
+h2. Vimperator
+
+"vimperator.org/trac/wiki/Vimperator":http://www.vimperator.org/trac/wiki/Vimperator
+
+A Firefox plugin which adds vi-like keyboard commands, plus a DOM/JavaScript object explorer, and an interactive JavaScript shell. Very disorienting yet somehow familiar. Worth at least 10 minutes of mayhem.
+
+
+h2. vi in JavaScript
+
+"gpl.internetconnection.net/vi":http://gpl.internetconnection.net/vi/
+
+Funny at first, then amazing as you realize how complete it is. Not 100% complete, but very usable.
+
+
+h2. Intro to Modal Editing
+
+"viemu.com/a-why-vi-vim.html":http://www.viemu.com/a-why-vi-vim.html
+
+Classic piece on the benefits of vi. Read this so you're prepared to smoothly field questions like "Why the heck would I want to learn all those obscure commands? Aren't you crazy?"
+
+
