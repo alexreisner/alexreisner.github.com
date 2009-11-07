@@ -153,12 +153,16 @@ img.right {
 
 
 /* --- Disqus Comments --- */
-#disqus_thread { margin-top: 45px; }
+#disqus_thread {
+	margin-top: 45px;
+  border-top: 3px solid #666666;
+	background-color: #eee;
+	padding: 6px;
+}
 #disqus_thread h3 {
   text-align: left;
   font-size: 123.1%;
-  padding: 8px 0;
-  border-top: 3px dotted #c2283e;
+	margin-bottom: 4px;
 }
 .dsq-by,
 .dsq-dc-logo,
