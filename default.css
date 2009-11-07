@@ -129,6 +129,14 @@ dd {
 #navbar a:visited { color: #666; }
 #navbar a:hover   { background-color: #fcf5a7; }
 
+img.left {
+	float: left;
+	margin-right: 8px;
+}
+img.right {
+	float: right;
+	margin-left: 6px;
+}
 
 /* --- Home Page --- */
 .home_page {
