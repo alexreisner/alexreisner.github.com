@@ -1,0 +1,36 @@
+Practical Documentation
+
+http://jacobian.org/writing/great-documentation/
+
+Jacob Kaplan-Moss is right about many things, but I have a couple of issues with it:
+
+
+# Write only as much documentation as can be maintained. You may need to adjust your workflow to integrate documentation maintenance more closely with code maintenance.
+
+
+* It's fine for open source documentation where one, in theory, has endless time to write documentation, but what about paid projects?
+
+* The idea that more documentation is better fails when there is too much documentation to maintain and it goes out of date. Inaccurate documentation is almost as bad as no documentation.
+
+* 
+
+
+Kaplan-Moss apologizes a couple of times in his article for weaknesses in Django's documentation. It's great when anyone publicly criticizes their own work, but does this point to a problem? Too much documentation? He says "700 pages printed" as if that's a good thing.
+
+The idea that we can make everyone happy is nice. However, the rule that "a well-documented project needs to provide many different forms of documentation" is a little unrealistic, and not just because it runs the risk of violating Rule #1 above. Nearly all good design is opinionated (it's not just my Rails indoctrination that makes me say this). We shouldn't need to call things "opinionated", it should be the norm, and un-opinionated designs should be called "unfocused." It's the same way with documentation. This is certainly not to say that everyone learns in the same way (we obviously don't) but that it's far easier to read 20 pages from start to finish, even if it's a little complicated, than try to find what you're looking for in a 200 page tome. If you're already familiar with a product and its documentation then you know what headings to look under or what to search for. If you don't yet know the terminology, you need something small.
+
+
+It's the difference between Apple and Microsoft [careful: MS has 80% of market]. I don't think this is a new idea in any way
+
+
+" auto-generated documentation is worse than useless: it lets maintainers fool themselves into thinking they have documentation, thus putting off actually writing good reference by hand" -- I agree
+
+
+SECTIONS
+
+I. What it is and why you might want to use it.
+II. How to download/purchase, install, and configure it.
+III. How to get started with it (tutorial).
+IV. How to do more advanced things with it (JKM's "Topical Guides").
+V. API documentation (auto-generated).
+
