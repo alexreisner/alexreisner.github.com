@@ -1,5 +1,5 @@
 ---
-title: CSS Design vs Payload
+title: CSS Consistency vs Payload
 layout: article
 categories: articles
 ---
@@ -52,7 +52,9 @@ For example, if you have two second-level headers (&lt;h2&gt;s) that both _shoul
 </div>
 {% endhighlight %}
 
-Nicole's reason for this is that it's better design in the OOP sense. This means it's more modular, reusable, readable, and maintainable (avoids spaghetti code) and there's generally much less of it (smaller download). There's another reason too: "according to Google":http://code.google.com/speed/page-speed/docs/rendering.html#UseEfficientCSSSelectors, "inefficient" location-based selectors are rendered more slowly by web browsers (try Google's "PageSpeed":http://code.google.com/speed/page-speed plugin for Firebug to see how your selectors rate).
+Nicole's reason for this is consistency: if you copy an &lt;h2&gt; from one part of a page and paste it somewhere else, it should look the same. This is one of the rules of OO stylesheet design, the aim of which is to create code that is more modular, reusable, readable, and maintainable. There's also generally much less of it (smaller download).
+
+There's another reason to follow this rule: "according to Google":http://code.google.com/speed/page-speed/docs/rendering.html#UseEfficientCSSSelectors, "inefficient" location-based selectors are rendered more slowly by web browsers (try Google's "PageSpeed":http://code.google.com/speed/page-speed plugin for Firebug to see how your selectors rate).
 
 
 h2. The Problem
@@ -95,7 +97,7 @@ We remove the class attribute from the &lt;table&gt; tag, but we add 3 to each o
 
 We just added almost 2 KB to each product listing page. If we used the same strategy in other places we would add still more. Whether this increase is significant is outside the scope of this article (watch "this presentation by Microsoft and Google":http://blip.tv/file/2279751) and, to some extent, depends on your application. My point is only that there is an increase in file size and a corresponding decrease in page performance when you use this technique. The magnitude of the change depends on the particular HTML you're using.
 
-This is not to say that I don't support an object-oriented approach to CSS. In fact, I think one could argue that location-dependent selectors _are compatible_ with the concept of object-oriented design, though I'm not ready to flesh out that argument just yet. Since Nicole's excellent talk I'm more inclined to go back and re-examine how modular my CSS really is.
+This is not to say that I don't support an object-oriented approach to CSS. In fact, I think one could argue that location-dependent selectors _are compatible_ with the concept of object-oriented design, though I'm not ready to flesh out that argument just yet. (Since Nicole's excellent talk I'm more inclined to go back and re-examine how modular my CSS really is.)
 
-My point, if I even have one, is just this: be aware of the side effects of all design patterns, avoid becoming married to any one approach, and choose the right strategy for each problem. There are cases in which C is a more appropriate language than an object oriented alternative. And there are projects--and this is Nicole Miller's pitch--where the increased file size will be negligible compared with the efficiency and maintainability gained by avoiding naive nested selectors.
+My point, if I even have one, is just this: be aware of the side effects of all design patterns, avoid becoming married to any one approach, and choose the right strategy for each problem. There are cases in which C is a more appropriate language than an object oriented alternative. And there are cases--and this is Nicole Miller's pitch--where the increased file size will be negligible compared with the efficiency and maintainability gained by avoiding naive nested selectors.
 
