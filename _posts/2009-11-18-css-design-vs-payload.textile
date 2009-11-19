@@ -1,0 +1,101 @@
+---
+title: CSS Design vs Payload
+layout: article
+categories: articles
+---
+
+Managing stylesheets is a challenge in any web application. If you've worked much with object-oriented programming you may be naturally inclined to use OO techniques when designing CSS. This is a good idea, of course, but it's not always straightforward in practice because the size of the code itself (download time) can affect performance. In my experience it is sometimes necessary to sacrifice clarity and maintainability for speed. The question is: when?
+
+
+h2. The Rule
+
+"Nicole Miller":http://www.stubbornella.org has written eloquently about the use of "object-oriented programming concepts in CSS":http://www.stubbornella.org/content/category/general/geek/css to make your code more efficient and maintainable. She offers many specific recommendations, including the following:
+
+bq. *Avoid location-dependent styles.*
+Sandboxing is better than spaghetti, but leads to performance problems.
+
+For example, if you have two second-level headers (&lt;h2&gt;s) that both _should_ be second level headers but need to look different, *don't do this*:
+
+{% highlight :html %}
+<style type="text/css">
+  .header h2 { font-size: 125%; color: green; }
+  .news   h2 { font-size: 108%; color: blue; }
+</style>
+
+<div class="header">
+  <h2>...</h2>
+</div>
+...
+<div class="news">
+  <h2>...</h2>
+  <h2>...</h2>
+  <h2>...</h2>
+</div>
+{% endhighlight %}
+
+*Instead, do this*:
+
+{% highlight :html %}
+<style type="text/css">
+  h2.header { font-size: 125%; color: green; }
+  h2.news   { font-size: 108%; color: blue; }
+</style>
+
+<div>
+  <h2 class="header">...</h2>
+</div>
+...
+<div>
+  <h2 class="news">...</h2>
+  <h2 class="news">...</h2>
+  <h2 class="news">...</h2>
+</div>
+{% endhighlight %}
+
+Nicole's reason for this is that it's better design in the OOP sense. This means it's more modular, reusable, readable, and maintainable (avoids spaghetti code) and there's generally much less of it (smaller download). There's another reason too: "according to Google":http://code.google.com/speed/page-speed/docs/rendering.html#UseEfficientCSSSelectors, "inefficient" location-based selectors are rendered more slowly by web browsers (try Google's "PageSpeed":http://code.google.com/speed/page-speed plugin for Firebug to see how your selectors rate).
+
+
+h2. The Problem
+
+While I agree with most of Nicole's advice, and use an object-oriented approach 80% of the time, I'm a little hesitant about killing _all_ of my location-dependent selectors. Here's why: In the simple example above, the location-independent approach adds 26 bytes to the size of the HTML. Certainly 26 bytes is nothing to worry about, but what happens on an actual web page where you might need to add class="..." attributes to 50, 100, or 500 tags? Could the size increase become significant?
+ 
+I asked Nicole about this earlier today at the "Web 2.0 Expo":http://www.web2expo.com/webexny2009 and she cited real companies that have significantly reduced their CSS payload (eg: from 60 to 15 KB) by switching to her "OOCSS":http://github.com/stubbornella/oocss library. However, I question whether a one-time savings of 45 KB (assuming browsers properly cache your stylesheet) justifies an increase of perhaps 20 KB on every page of your site. (With caching configured correctly, a browser will load your stylesheet once, but if a user views 20 pages of a site they will load 20 HTML files, all of which will have grown.)
+
+To examine this more closely, let's do some quick math. Let's start with a hypothetical web page which lists 40 products in a table. Let's say the average HTML class attribute (eg: class="product") is 16 bytes long, a conservative figure. With location-dependent selectors we have HTML like this:
+
+{% highlight :html %}
+<table class="products">
+  <tr>
+    <td><img src="..." /></td>
+    <td><a href="...">Product Name</a></td>
+    <td>Description</td>
+    <td><span>$9.99</span></td>
+  </tr>
+  <!-- 39 more rows like this -->
+</table>
+{% endhighlight %}
+
+Without location-dependent selectors we might need to do this:
+
+{% highlight :html %}
+<table>
+  <tr>
+    <td><img class="thumbnail" src="..." /></td>
+    <td><a class="product-name" href="...">Product Name</a></td>
+    <td>Description</td>
+    <td><span class="price">$9.99</span></td>
+  </tr>
+  <!-- 39 more rows like this -->
+</table>
+{% endhighlight %}
+
+We remove the class attribute from the &lt;table&gt; tag, but we add 3 to each of the 40 rows:
+
+@(3 * 40) * 16 bytes = 1920 bytes@
+
+We just added almost 2 KB to each product listing page. If we used the same strategy in other places we would add still more. Whether this increase is significant is outside the scope of this article (watch "this presentation by Microsoft and Google":http://blip.tv/file/2279751) and, to some extent, depends on your application. My point is only that there is an increase in file size and a corresponding decrease in page performance when you use this technique. The magnitude of the change depends on the particular HTML you're using.
+
+This is not to say that I don't support an object-oriented approach to CSS. In fact, I think one could argue that location-dependent selectors _are compatible_ with the concept of object-oriented design, though I'm not ready to flesh out that argument just yet. Since Nicole's excellent talk I'm more inclined to go back and re-examine how modular my CSS really is.
+
+My point, if I even have one, is just this: be aware of the side effects of all design patterns, avoid becoming married to any one approach, and choose the right strategy for each problem. There are cases in which C is a more appropriate language than an object oriented alternative. And there are projects--and this is Nicole Miller's pitch--where the increased file size will be negligible compared with the efficiency and maintainability gained by avoiding naive nested selectors.
+
