@@ -3,3 +3,15 @@
 This is the code for my web site ("blog") about computer programming which is located at http://code.alexreisner.com. It is a collection of articles and templates rendered to static HTML pages using Jekyll (http://github.com/mojombo/jekyll). The site is currently hosted by GitHub.
 
 
+== Install
+
+Install dependencies:
+
+  sudo gem install jekyll
+  sudo apt-get install python-pygments
+
+Then run server at port 4000:
+
+  jekyll --server
+
+
