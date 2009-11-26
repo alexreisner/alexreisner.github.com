@@ -5,7 +5,7 @@ categories: articles
 ---
 My first computer was a "Commodore 64C":http://en.wikipedia.org/wiki/Commodore_64 which I received from my parents for my 8th birthday in 1988. It had cartridges with exciting games like Frogger and Zaxxon, and we added an external 5.25" floppy disk drive so I could play boring games like Odell Lake, which I loved. It had a graphical user interface called Geos which required you to hook up a mouse, and was pointless.
 
-!(right)/images/odell_lake.png(Odell Lake)!
+!(right)/images/content/odell_lake.png(Odell Lake)!
 
 At some point I had a big book of BASIC computer programs that I began typing into the computer. These programs were hundreds of lines long and never worked because I would make a lot of typing errors and never be able to find them. I understood variables, conditionals, and GOTO, but not much else. Give me a break, I was eight.
 
@@ -13,7 +13,7 @@ My friend Nick had a Tandy computer in his basement that ran MS-DOS, which I tho
 
 Later, my friend James had a 386 25 MHz PC with an enormous red on/off switch on the side. One day James came to school with a computer software catalog and pointed to a game called Wing Commander, which he said he was getting. Pretty soon I was at his house every day after school. He also had a Roland MT-32 which, in retrospect, was an expensive device probably used by his mom for something productive she actually did with her time. All we knew was when you turned that thing on, you'd better cover your ears. Whenever a game started the volume level shot right up to 100. I have no idea why this happened, but it scared the hell out of me every time. To this day the sight of an MT-32 makes me jump backwards 5 feet.
 
-!(right)/images/stunts.png(Stunts)!
+!(right)/images/content/stunts.png(Stunts)!
 
 Anyway, Wing Commander was amazing. There was also a game called Stunts, where you raced cars against computer-controlled drivers with names like Bernie Rubber and Skid Vicious. Skid was supposed to be the toughest, but they were all bad. It wasn't so much about winning in Stunts, it was more about crashing.
 
@@ -23,7 +23,7 @@ In 1992 my dad and I read a lot of catalogs and eventually he bought us a brand 
 
 This computer was fast. Even James was impressed. But the extreme speed was sometimes a problem. For example, I tried to install Wing Commander but everything moved too fast, like a black and white film with people jittering all over the place. That wasn't good, but soon James got Wing Commander II and I copied it onto about 20 disks and somehow got it to work. This was the beginning of my floppy disk collection: hundreds of disks, all carefully labeled and color-coded, in drawers, alphabetically, beautiful.
 
-!(left)/images/ms_dos.png(MS-DOS)!
+!(left)/images/content/ms_dos.png(MS-DOS)!
 
 I remember my horror in 1994 at learning that when Windows 95 came out, the computer would just boot right into it, skipping DOS entirely. "You're going to lose control of the computer," I thought. Of course, we did. That was the beginning of the end.
 
