@@ -5,32 +5,20 @@ categories: articles
 ---
 A few weeks ago my computer (then Ubuntu 9.04 Intrepid) froze. I rebooted and received this error message:
 
-{% highlight bash %}
-Kernel Panic -- not syncing: No init found.
-Try passing init= option to kernel
-{% endhighlight %}
+<div class="highlight"><pre>Kernel Panic -- not syncing: No init found.<br />Try passing init= option to kernel</pre></div>
 
 I eventually determined that the cause was a bad RAID controller, but you might see this message due to some other disk problem. You might also see a message like:
 
-{% highlight bash %}
-Target filesystem doesn't have /sbin/init.  No init found.
-Try passing init= bootarg.
-{% endhighlight %}
+<div class="highlight"><pre>Target filesystem doesn't have /sbin/init.  No init found.<br />Try passing init= bootarg.</pre></div>
 
 I was a little disappointed with the various message board posts out there for troubleshooting such boot problems so I thought I'd document what I did. Hopefully it will help someone.
 
 First, boot from the Ubuntu Live CD (either to command line or X-windows with a terminal app) so you get a working system without using the hard disk. To check the filesystem and correct minor problems you want to run @fsck@. First, you have to find and mount the disk:
 
-{% highlight bash %}
-sudo fdisk -l
-{% endhighlight %}
+<div class="highlight"><pre>sudo fdisk -l</pre></div>
 
 Look for the location of your drive in @/dev@. Usually it will be @/dev/sda@. To mount it and run @fsck@:
 
-{% highlight bash %}
-sudo mkdir /media/root
-sudo mount /dev/sda /media/root
-sudo fsck /media/root
-{% endhighlight %}
+<div class="highlight"><pre>sudo mkdir /media/root<br />sudo mount /dev/sda /media/root<br />sudo fsck /media/root</pre></div>
 
 If you get a message about a bad superblock you may be in trouble, otherwise there's a decent chance @fsck@ will fix your drive so that you can boot normally again.
