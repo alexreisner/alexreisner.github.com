@@ -19,6 +19,6 @@ First, boot from the Ubuntu Live CD (either to command line or X-windows with a 
 
 Look for the location of your drive in @/dev@. Usually it will be @/dev/sda@. To mount it and run @fsck@:
 
-<div class="highlight"><pre>sudo mkdir /media/root<br />sudo mount /dev/sda /media/root<br />sudo fsck /media/root</pre></div>
+<div class="highlight"><pre>sudo mkdir /media/root<br />sudo mount /dev/sda1 /media/root<br />sudo fsck /media/root</pre></div>
 
 If you get a message about a bad superblock you may be in trouble, otherwise there's a decent chance @fsck@ will fix your drive so that you can boot normally again.
