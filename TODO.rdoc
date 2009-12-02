@@ -1,5 +1,19 @@
 = To-do List
 
 * use home page layout for all non-post pages?
-* switch to a fork that has tags (and random?)
+* switch to a Jekyll fork that has tags (and rand()?)
+
+== Article Ideas
+
+* add update to Static HTML article: Google's AJAX crawl proposal
+* Pranav Mistry
+* writing documentation
+* Why Do We Have Windows? - the rise of MS DOS/Windows
+* Internet History
+  * From ENIAC to Email (early computers)
+  * early computer scientists (Turing, Church, et al)
+  * ARPANET
+  * Evolution of Internetworking Protocols (1973-82)
+  * The Eighties (what was happening?)
+  * Bell Labs in the 60s (bios of people there)
 
