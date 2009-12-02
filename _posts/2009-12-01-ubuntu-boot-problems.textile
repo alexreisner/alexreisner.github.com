@@ -13,12 +13,12 @@ I eventually determined that the cause was a bad RAID controller, but you might 
 
 I was a little disappointed with the various message board posts out there for troubleshooting such boot problems so I thought I'd document what I did. Hopefully it will help someone.
 
-First, boot from the Ubuntu Live CD (either to command line or X-windows with a terminal app) so you get a working system without using the hard disk. To check the filesystem and correct minor problems you want to run @fsck@. First, you have to find and mount the disk:
+First, boot from the Ubuntu Live CD (either to command line or X-windows with a terminal app) so you get a working system without using the hard disk. To check the filesystem and correct minor problems you want to run @fsck@. First, you have to find the disk and partition:
 
 <div class="highlight"><pre>sudo fdisk -l</pre></div>
 
-Look for the location of your drive in @/dev@. Usually it will be @/dev/sda@. To mount it and run @fsck@:
+Usually it will be @/dev/sda1@ but look over the output of @fdisk@ to be sure. To run @fsck@:
 
-<div class="highlight"><pre>sudo mkdir /media/root<br />sudo mount /dev/sda1 /media/root<br />sudo fsck /media/root</pre></div>
+<div class="highlight"><pre>sudo fsck /dev/sda1</pre></div>
 
 If you get a message about a bad superblock you may be in trouble, otherwise there's a decent chance @fsck@ will fix your drive so that you can boot normally again.
