@@ -26,6 +26,16 @@ It's the difference between Apple and Microsoft [careful: MS has 80% of market].
 " auto-generated documentation is worse than useless: it lets maintainers fool themselves into thinking they have documentation, thus putting off actually writing good reference by hand" -- I agree
 
 
+
+
+
+
+A Standard For Code Documentation
+
+While the idea may seem silly, oversimplified, and too general, I'd like to propose a standard format for writing documentation for open source code (and, to a lesser extent, paid work). While it's true that everyone learns differently, I believe there is one way that will work for many people. Also, we need a standard format we can call upon so we don't have to spend time designing documentation for every project we create. Hopefully this will make the task of writing documentation easier and more people will do it.
+
+
+
 SECTIONS
 
 I. What it is and why you might want to use it.
