@@ -1,0 +1,106 @@
+---
+title: A Standard for Open Source Code Documentation
+layout: article
+categories: articles
+---
+While the idea may at first seem silly, oversimplified, and too general, I'd like to propose a standard format for documentation of open source projects. I know that every project is different and that this sounds ludicrous, but bear with me for just a few paragraphs and I think you'll see why I think this is a good idea.
+
+
+h2. Motivation
+
+As code writers, a standard format would save us from having to design documentation for every project we create. It's much faster and easier to write when you're filling in blanks than when you're thinking about structure. My hope is that if the process is faster and easier then more of us will write better documentation.
+
+A standard format may also make documentation easier to understand because readers come to it possessing a basic familiarity with its structure. In most types of product design it's best to imagine a single user (real or hypothetical) and design exactly what they want. Trying to include something for everyone is a great way to satisfy no one, and the same principle applies to documentation. While it's true that everyone learns differently, I think a carefully-planned and well-edited document will accommodate a high percentage of readers. Trying to satisfy everyone leads to too much documentation, which is impractical for the maintainer and overwhelming to the reader.
+
+Anyway, without further delay, here is a first draft of my proposed standard. I seek your feedback.
+
+
+h2. The Standard (First Draft)
+
+Documentation should be broken up into five sections. All sections do *not* need to appear on the same page, and it is often most practical (and appropriate) for sections to appear on different sites (eg, a auto-generated API doc host, an "official" home page, a video tutorial host, etc). However, each section must contain links to every other section to give context and easy access.
+
+There should also be a clear order to the sections. Two of the sections I propose (IV and V) will have non-linear content within, but the overall starting point should be obvious to the newcomer. One shouldn't need to "figure out" how to read the documentation.
+
+In the following sections I frequently write as if you are the documentation reader, not the writer. I do this to put you in what I hope is a useful mindset. It's hard to make yourself unfamiliar with your own project so it's good to think about experiences you've had with other people's documentation. And it should be obvious that documentation should be designed based on what is useful to the reader, not what is easy for the writer.
+
+Note that at this stage I am not proposing formal names for the sections, and am not sure whether or not specific names should be part of the standard.
+
+
+h3. I. What it is and why you might want to use it
+
+This is very important, and often overlooked. Frequently we look up a piece of software because we heard the name, it sounded exciting, and we want to know if we have a use for it. We may not know:
+
+* what problems it solves
+* how it works (environment, dependencies)
+* its shortcomings
+* what it's _not_ intended for
+* how it compares to alternatives
+
+All this information is extremely useful, and it is perhaps the most difficult section for the software author to write. As programmers we know intimately what our code does, and this familiarity makes it hard for us to understand what it's like for someone not to know. For this reason it's good to write this part of the documentation early in the development of your project, ideally even before it's started. Of course you'll tweak it as you go along and add features or change the focus, but it's important to lay the groundwork and set the tone while you're a sort of newcomer to your project. Once you know something, it's hard to forget it.
+
+
+h3. II. How to download/purchase, install, and configure it
+
+In the case of free open source software, a download will often be available very near the documentation, but there's no telling where your documentation will appear in the future (you might need to move a section somewhere else), so it's best to pretend that you are writing a good old-fashioned book without clickable hyperlinks. Tell your readers:
+
+* how to obtain your software (download URL, package manager command)
+* how to install it (on any platform where it runs)
+* what the most common, basic configuration options are (if any)
+* a method for confirming that the software is installed successfully
+* common problems encountered with installation
+
+
+h3. III. How to get started with it (a tutorial)
+
+Once a piece of software is installed, you want to get started using it by doing something simple to get a feel for the style and operational paradigm of the interface. It may not be what you ultimately want to do with the software, but if you have _something_ working within five or ten minutes you're usually feeling pretty confident. Make this happen for your readers.
+
+
+h3. IV. How to do more advanced things with it (topical guides)
+
+The above three sections will often be located in the code's README file. This is the first section which will probably be located elsewhere, as it may grow to be fairly long and is not intended to be read linearly. To that end, it should be well-indexed (with table of contents) with subjects ordered from easy to hard. It's difficult to come up with interesting examples in the abstract, so explain the ways you've used the project yourself, or ways you could use it that you actually find interesting. As people contact you with "How do I ___?" questions, add guides for them.
+
+
+h3. V. API documentation (auto-generated)
+
+Finally, good API documentation is very important for large projects. If you are writing a Rails plugin that provides two methods you probably don't need API documentation. However, your code should _always_ be well-commented and part of writing documentation is going back and cleaning up your in-code comments. If you're like me, you'll be surprised at how useless many of your method descriptions are.
+
+The code-writing mindset is very different from the documentation-writing mindset. Usually you will find that your code comments are too specific, that you presume too much knowledge of the context in which a method is called. This is because when you're writing a method you usually immerse yourself so deeply in a particular use case that you can't see beyond that situation (eg, why someone might be in that situation and how they got there). This is necessary for writing code, and useless for explaining it.
+
+In short: _when you're not writing code_, go back and add context to your method comments, and make sure to explain all parameters.
+
+
+h2. Questions, Concerns, and Ideas
+
+I've said it several times already, but I think it bears repeating one more time: *it's very hard to explain your own code*. An obvious solution is to have someone else write your documentation. Something I'd love to see is more contributions to documentation of open source projects. The first reading of a project's documentation by a new user is critical. They are in a unique position to make clarifications due to their unfamiliarity with the project. This is why I strongly recommend that sections I, II, and III above be included in a project's code repository where they can be checked out and edited by anyone. This is also a great way to get people into the habit of contributing to the open source projects they use. That first open source contribution is usually the hardest, and contributing English can be less intimidating than contributing code.
+
+What about the ever-evolving nature of APIs? Does rapid change suggest that comments or discussions are perhaps a better way to document a project than a single large document? I've probably spent more time reading blog posts and other non-official documentation than I have reading the official documentation for every open source projects I've worked with. Once I've read the official documentation, I'm unlikely to go back to it to see what's new, because it feels so static. I may re-read useful sections I know are there, but unless there's some indicator that something has been added (since when? when did I last read this?) I'm not likely to scan for changes. This problem is beyond the scope of this article, but it's an important one because it may suggest that the standard I'm proposing is not ideal. It may mean comments must be allowed on documentation (in addition to edits) or that we need some way of quickly showing what's new (maybe edits appear in some comment-like fashion). Wiki-style revisions preserve history, but I think a more explicit indication of changes is needed.
+
+We also need a way of specifying dates and software version numbers. I think the condition of official documentation is generally so bad that we've become accustomed to assuming it's out of date. A mechanism for someone to quickly timestamp a paragraph or section to indicate its up-to-date-ness would be very helpful. (Conversely, users could mark sections or paragraphs as out of date, but this doesn't solve the problem of presenting a "current as of" date to new users.) I think official documentation often appears old simply because it displays no date.
+
+Anyway, I hope I've written enough here to convince you that a documentation standard is both possible and useful to the open source community, and that both writers and readers of documentation stand to benefit. Please leave a comment below and let me know what you think.
+
+
+
+{% comment %}
+
+Comment left on Jacob Kaplan-Moss's blog at:
+http://jacobian.org/writing/great-documentation/what-to-write
+
+
+Thanks for another great article. I agree with the commeters who think you're too hard on autodoc. For large and fast-evolving APIs I don't see how else you can keep documentation up to date. I wish there was a better or more natural way to present auto-generated documentation on the web, but that's a problem with the available software, not the concept of auto-generated docs from code comments.
+
+I've just written a proposal for a standard documentation format for open source projects. I think we agree on a lot of points, but I'd be curious to get your reaction to it:
+
+http://code.alexreisner.com/articles/code-documentation-standard.html
+
+
+
+* What about templates, which (may) have two distinct people working on them (a Ruby programmer and an HTML author). Should we have different sections of documentation for them? Yes, but these are sub-sections of the above five.
+
+* Write only as much documentation as can be maintained. You may need to adjust your workflow to integrate documentation maintenance more closely with code maintenance.
+
+* The idea that more documentation is better fails when there is too much documentation to maintain and it goes out of date. Inaccurate documentation is almost as bad as no documentation.
+
+* It's fine for open source documentation where one, in theory, has endless time to write documentation, but what about paid projects?
+
+{% endcomment %}
