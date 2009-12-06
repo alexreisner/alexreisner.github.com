@@ -64,7 +64,7 @@ h3. V. API documentation (auto-generated)
 
 Finally, good API documentation is very important for large projects. If you are writing a Rails plugin that provides two methods you probably don't need API documentation. However, your code should _always_ be well-commented and part of writing documentation is going back and cleaning up your in-code comments. If you're like me, you'll be surprised at how useless many of your method descriptions are.
 
-The code-writing mindset is very different from the documentation-writing mindset. Usually you will find that your code comments are too specific, that you presume too much knowledge of the context in which a method is called. This is because when you're writing a method you usually immerse yourself so deeply in a particular use case that you can't see beyond that situation (eg, why someone might be in that situation and how they got there). This is necessary for writing code, and useless for explaining it.
+The code-writing mindset is very different from the documentation-writing mindset. Usually you will find that your code comments are too specific, that you presume too much knowledge of the context in which a method is called. This is because when you're writing a method you usually immerse yourself so deeply in a particular use case that you can't see beyond that use case (eg, why someone might be in that situation and how they got there). This mindset is necessary for writing code, and useless for explaining it.
 
 In short: _when you're not writing code_, go back and add context to your method comments, and make sure to explain all parameters.
 
