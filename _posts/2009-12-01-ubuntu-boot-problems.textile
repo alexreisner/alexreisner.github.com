@@ -3,7 +3,7 @@ title: Troubleshooting Ubuntu Boot Problems
 layout: article
 categories: articles
 ---
-A few weeks ago my computer (then Ubuntu 9.04 Intrepid) froze. I rebooted and received this error message:
+A few weeks ago my computer (then Ubuntu 9.04 Jaunty) froze. I rebooted and received this error message:
 
 <div class="highlight"><pre>Kernel Panic -- not syncing: No init found.<br />Try passing init= option to kernel</pre></div>
 
