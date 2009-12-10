@@ -1,6 +1,0 @@
-== STI
-
-* affects path/URL names (need extra call to panel_path() with link_to())
-* 
-
-
