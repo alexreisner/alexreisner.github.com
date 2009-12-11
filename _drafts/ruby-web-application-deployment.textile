@@ -1,0 +1,8 @@
+---
+title: Overview of Ruby Web Application Deployment
+---
+* what are the different pieces in the stack
+  * web server (Apache, Nginx, Lighttpd, etc)
+  * ruby app server (Mongrel, Unicorn, Thin, etc)
+* writing a bare Mongrel handler/rack app
+

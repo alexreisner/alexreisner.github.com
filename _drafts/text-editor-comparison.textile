@@ -1,0 +1,30 @@
+---
+title: Text Editor Comparison
+---
+
+h2. Competitors
+
+GVim
+TextMate
+GEdit
+EditPlus
+
+
+h2. Features
+
+regex search and replace
+column select
+sort / remove duplicates
+macros
+syntax highlighting (how flexible?)
+snippets
+multi-line comment
+multi-line indent
+smart handling of external file changes while editing
+
+from david:
+  tabbed/tiled layout
+  word completion
+  text manipulation (changing case)
+  folding
+
