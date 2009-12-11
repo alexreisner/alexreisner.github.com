@@ -148,22 +148,4 @@ That's all for now. Good luck.
 
 * think about why STI didn't work for susan project
 
-* post comments on:
-  apidock?
-  http://timhward.blogspot.com/2008/06/ror-polymorphic-associations-and.html
-  http://stackoverflow.com/questions/555668/single-table-inheritance-and-where-to-use-it-in-rails
-  http://www.giantjapaneserobot.com/post/177232107/ruby-on-rails-single-table-inheritance-and-restful
-  http://ananasblau.com/2008/6/1/single-table-inheritance-in-rails-2-1
-
-
-If we wanted access to the @subclasses@ list outside of the model (eg, in a view), we could make this @subclasses@ method public by adding this to our @Vehicle@ parent class:
-
-{% highlight :ruby %}
-def self.subclasses
-  super
-end
-{% endhighlight %}
-
-Generally speaking, making a protected method public is not a good practice. However, this part of ActiveRecord is fairly simple, has been stable for some time, and remains unchanged in Rails 3 as of today. See the ActiveRecord::Base source code for details, and consider yourself warned. As an alternative, we
-
 {% endcomment %}
