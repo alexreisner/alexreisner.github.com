@@ -90,9 +90,14 @@ h1 {
   margin-bottom: 54px;
   margin-top: 72px;
 }
-h2, h3 {
+h2 {
+  color: #111;
+  font-size: 146.5%;
+  margin-top: 36px;
+}
+h3 {
   color: #222;
-  margin-top: 32px;
+  margin-top: 28px;
 }
 a       { color: #346d94; text-decoration: none; }
 a:hover { color: #0096bf; }
