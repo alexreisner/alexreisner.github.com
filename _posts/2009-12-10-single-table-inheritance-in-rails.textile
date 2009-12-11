@@ -3,12 +3,12 @@ title: Single Table Inheritance in Rails
 layout: article
 categories: articles
 ---
-Single table inheritance (STI) in Rails gets a lot of bad press, some of it deserved, but much of it not. In recent versions some annoyances have been fixed (eg, confusing behavior regarding "validation":http://webonrails.com/2007/10/26/single-table-inheritance-validates_uniqueness_of-problem/ and "demodulization":http://ananasblau.com/2008/6/1/single-table-inheritance-in-rails-2-1). Because STI has been invaluable to me in some recent projects, I thought I'd write about some reasons you might use it, when you might want to avoid it, and some tips for working with it (if you're sure you want to use it, skip to "the tips":#tips).
+Because single table inheritance (STI) has been invaluable to me in some recent Rails projects, I thought I'd try to dispel a little of its negative reputation by writing about some reasons you might use it, when to avoid it, and some "tips":#tips for working with it. If you gave up on Rails's STI a while ago because it required too many workarounds, I'd recommend giving it another look, as some annoyances (eg, regarding "validation":http://webonrails.com/2007/10/26/single-table-inheritance-validates_uniqueness_of-problem/ and "demodulization":http://ananasblau.com/2008/6/1/single-table-inheritance-in-rails-2-1) have recently been fixed.
 
 For this article I'm assuming you know what STI is and how to set it up (add a @type@ column and inherit from a parent class). I'm also assuming that you're familiar with "polymorphic associations":http://www.andygoh.net/2008/06/19/ruby-on-rails-polymorphic-association and using modules to share code among different classes. Just because you know how to use these techniques doesn't mean deciding which one to use is easy.
 
 
-h2. The Choices
+h2. When To Use It
 
 Suppose you have three classes in your application which model similar things. To make this easier to think about I'll be referring to some hypothetical classes by name: @Car@, @Truck@, and @Motorcycle@. Let's consider three choices for modeling this situation:
 
