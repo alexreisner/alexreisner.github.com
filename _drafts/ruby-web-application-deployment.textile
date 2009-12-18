@@ -1,8 +1,60 @@
 ---
-title: Overview of Ruby Web Application Deployment
+title: Anatomy of a Ruby Web Application
 ---
 * what are the different pieces in the stack
   * web server (Apache, Nginx, Lighttpd, etc)
   * ruby app server (Mongrel, Unicorn, Thin, etc)
 * writing a bare Mongrel handler/rack app
+
+
+Apache
+Mongrel/Thin/CGI or Passenger/Unicorn
+Rack
+Code
+
+
+h2. Your Code
+
+At the bottom of the stack is your application code. It may be written for a web framework like Rails, Sinatra, or Camping, or it may be a very simple script (eg, a standalone Rack application). The key point is that, while your code describes the behavior of a web site, there is usually no obvious way to "run" the code by itself. Sure, if you're using Rails you can type @ruby script/server@ and you can see it in your browser at localhost:3000, but you didn't write the code that makes this happen, there's something else (WEBrick, Mongrel, etc) which is part of your framework that does this.
+
+
+h2. Ruby Web Server
+
+You're probably used to thinking of Apache, Lighttpd, and Nginx when you think of web servers, but what is a _web server_ in a generic sense? A "server" is a daemon that communicates with clients, and "web" indicates the language of the world wide web: HTTP. A Ruby web server uses a Ruby application to generate its responses (it "serves the application"). This is the daemon that listens for HTTP requests, gives them to your application, and sends back a web page (the output of your app).
+
+It may help to see this in action. If you have Mongrel installed, save this script as @app.rb@:
+
+{% highlight :ruby %}
+require 'rubygems'  
+require 'mongrel'  
+  
+class BareApp < Mongrel::HttpHandler  
+  def process(request, response)  
+    response.start(200) do |head,out|  
+      out << request.params.inspect
+    end  
+  end  
+end  
+  
+h = Mongrel::HttpServer.new("0.0.0.0", "5000")  
+h.register("/", BareApp.new)  
+h.run.join
+{% endhighlight %}
+
+Then type `ruby app.rb` and visit 'http://localhost:5000':http://localhost:5000/ in your web browser. You should see a dump of the HTTP request parameters sent by your browser. (If you're coming from PHP, this is sort of like the @phpinfo()@ function.) You just ran what is known as a "bare Mongrel handler". It's just an extremely simple application being served by Mongrel. The same thing happens when a Rails application is served, but your code is executed within in the @process@ method. If you think I'm oversimplifying, next time you get an error in your Rails application, take a look at the full backtrace; somewhere near the bottom you'll see something like @.../mongrel.rb:64:in `process'@.
+
+
+h2. Rack
+
+The first line of the "Rack interface specification":http://rack.rubyforge.org/doc/SPEC.html reads:
+
+bq. A Rack application is an Ruby object (not a class) that responds to @call@. It takes exactly one argument, the *environment* and returns an Array of exactly three values: The *status*, the *headers*, and the *body*.
+
+That's an awfully good summary of what Rack does. The @environment@ parameter that the application accepts is a hash with keys like @REQUEST_METHOD@, @PATH_INFO@, @QUERY_STRING@, and others which should look familiar to you if you've done much web development.
+
+
+
+
+
+[make rack app, run with Passenger, Mongrel, Unicorn]
 
