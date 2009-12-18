@@ -1,17 +1,7 @@
 ---
 title: Anatomy of a Ruby Web Application
 ---
-* what are the different pieces in the stack
-  * web server (Apache, Nginx, Lighttpd, etc)
-  * ruby app server (Mongrel, Unicorn, Thin, etc)
-* writing a bare Mongrel handler/rack app
-
-
-Apache
-Mongrel/Thin/CGI or Passenger/Unicorn
-Rack
-Code
-
+[I don't go in order, and I don't explain how to set things up--it's conceptual]
 
 h2. Your Code
 
@@ -41,20 +31,31 @@ h.register("/", BareApp.new)
 h.run.join
 {% endhighlight %}
 
-Then type `ruby app.rb` and visit 'http://localhost:5000':http://localhost:5000/ in your web browser. You should see a dump of the HTTP request parameters sent by your browser. (If you're coming from PHP, this is sort of like the @phpinfo()@ function.) You just ran what is known as a "bare Mongrel handler". It's just an extremely simple application being served by Mongrel. The same thing happens when a Rails application is served, but your code is executed within in the @process@ method. If you think I'm oversimplifying, next time you get an error in your Rails application, take a look at the full backtrace; somewhere near the bottom you'll see something like @.../mongrel.rb:64:in `process'@.
+Then type `ruby app.rb` and visit 'http://localhost:5000':http://localhost:5000/ in your web browser. You should see a dump of the HTTP request parameters sent by your browser. (If you're coming from PHP, this is sort of like a crude @phpinfo()@ page.) You just ran what is known as a "bare Mongrel handler"--an extremely simple application served by Mongrel. The exact same thing happens when a Rails application is served by Mongrel: your application code is executed within in the @process@ method of a Mongrel::HttpHandler instance. This isn't an oversimplification: next time you get an error in your Rails application, take a look at the full backtrace; somewhere near the bottom you'll see something like @.../mongrel.rb:64:in `process'@.
+
+[list various app servers]
+
+So, if your web application is to be served by Mongrel, it needs to know about Mongrel's @process@ method. If it is to be served by a different Ruby web server, it needs to know how to interact with that server. For example, Rails used to only know how to use WEBrick and Mongrel. If you wanted to use Thin, you had to do some work. Wouldn't it be nice if all web servers worked the same way so you could use any of them without modifying your application or framework? That's where Rack comes in.
 
 
 h2. Rack
 
-The first line of the "Rack interface specification":http://rack.rubyforge.org/doc/SPEC.html reads:
+The first line of the "Rack interface specification":http://rack.rubyforge.org/doc/SPEC.html is very readable:
 
 bq. A Rack application is an Ruby object (not a class) that responds to @call@. It takes exactly one argument, the *environment* and returns an Array of exactly three values: The *status*, the *headers*, and the *body*.
 
-That's an awfully good summary of what Rack does. The @environment@ parameter that the application accepts is a hash with keys like @REQUEST_METHOD@, @PATH_INFO@, @QUERY_STRING@, and others which should look familiar to you if you've done much web development.
+That's an awfully good summary of what Rack does. The @environment@ parameter that the application accepts is that hash we displayed in our bare Mongrel handler (with keys like @REQUEST_METHOD@, @PATH_INFO@, @QUERY_STRING@, etc). The @call@ method is like Mongrel's @process@.
+
+I've gone out of order here--Rack fits in between your application code and the web server. It basically turns your application into the object described in the Rack interface specification and passes input/output from/to the web server.
+
+[explain: some web servers have Rack handlers built in, how do others work? does Rack have to know about them? and what does it mean that they're built-in? Passenger still requires the Rack gem]
+
+
+h2. Another Web Server?
+
+At this point you may be wondering why people are talking about using Apache or Nginx in their stack. Don't we already have a web server? We do, but it's not really a full-featured web server, and it's not very good at sending images and other kinds of static files (in fact all Ruby web servers are terrible at this, which is why they're commonly referred to as "application servers" instead of "web servers"). So what we want to do is use a general purpose web server for static files, and pass other requests along to our Ruby web/application server.
 
 
 
 
-
-[make rack app, run with Passenger, Mongrel, Unicorn]
 
