@@ -1,0 +1,7 @@
+---
+title: Events, Non-Blocking I/O, etc
+layout: article
+categories: articles
+---
+* Twisted/EventMachine/node.js: what's the hype about?
+* what is non-blocking i/o and how is it achieved?
