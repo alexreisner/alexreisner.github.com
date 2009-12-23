@@ -5,3 +5,5 @@ categories: articles
 ---
 * Twisted/EventMachine/node.js: what's the hype about?
 * what is non-blocking i/o and how is it achieved?
+
+* http://www.readwriteweb.com/archives/server-side_javascript_back_with_a_vengeance.php
