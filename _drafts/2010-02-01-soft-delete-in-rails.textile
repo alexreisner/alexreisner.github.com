@@ -1,0 +1,10 @@
+---
+title: Soft Delete Techniques In Rails
+layout: article
+categories: articles
+---
+
+* http://richarddingwall.name/2009/11/20/the-trouble-with-soft-delete/
+
+* using an all_xs named scope
+
