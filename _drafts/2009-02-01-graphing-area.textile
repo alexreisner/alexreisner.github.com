@@ -1,5 +1,5 @@
 ---
-title: Graphing and the Perception of Area
+title: "Data Graphics and the Perception of Area"
 layout: article
 categories: articles
 ---
@@ -9,6 +9,8 @@ categories: articles
 * see what ET says
 * flash, no substance: http://flowingdata.com/2009/12/16/5-best-data-visualization-projects-of-the-year-2009/
 
+* what about pie charts?
+  * my instinct is that they don't have the misperception problem...
 
 * email Information is Beautiful blogger
   * my article in BRJ
