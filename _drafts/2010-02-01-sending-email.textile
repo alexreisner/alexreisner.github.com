@@ -1,0 +1,8 @@
+---
+title: "The Difficulty of Sending Email"
+layout: article
+categories: articles
+---
+* how to successfully send automated emails to web site users
+* checklist for server configuration
+

@@ -1,5 +1,5 @@
 ---
-title: Soft Delete Techniques In Rails
+title: "Soft Delete Techniques In Rails"
 layout: article
 categories: articles
 ---
