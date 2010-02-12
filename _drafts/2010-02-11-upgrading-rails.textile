@@ -1,0 +1,91 @@
+---
+title: "Upgrading To Rails 3"
+layout: article
+categories: articles
+---
+I'm currently in the process of upgrading some of my personal project web applications to "Rails 3 beta":http://weblog.rubyonrails.org/2010/2/5/rails-3-0-beta-release/, which was released last week. It's been a pretty smooth process so far and I thought I'd share my methodology with you.
+
+I'm not going to talk about "installing dependencies and making sure you have the right version of Ruby":http://railscasts.com/episodes/200-rails-3-beta-and-rvm, what I'm describing here is a method for making your Rails 2 application code work with Rails 3.
+
+This is the same technique I used when upgrading to Rails 2.0 from 1.2.6, and I like it because you don't need to read a lot of documentation before getting started. This is especially good because there are a *lot* of changes in Rails 3. Perhaps not as many as there might be when upgrading "Drupal":http://www.drupal.org, but a lot.
+
+
+h2. Preliminary Stuff
+
+*Firstly, start with a small application.* This is just common sense. Don't start learning Rails 3 by trying to migrate your most complicated application. "Small" here means not only a small number of models and controllers, but also a small number of plugins. Ideally you start with an app that has zero non-Rails-3-compatible plugins. If you don't have an app like this, you may need to disable plugins first, or try to help upgrade your plugins to Rails 3 (yes, yes, I know you don't know Rails 3 yet; please see "Help the Community Upgrade" below).
+
+*Secondly, create a new branch in your VCS repository* before you start making any changes. If you're working with a live application you need to be able to make _minor_ changes to the deployed code during the day, week, or month(s) it takes you to finish your upgrade (and for the final release to come out). If you're using Git, do something like this:
+
+{% highlight :bash %}
+git checkout -b rails3
+{% endhighlight %}
+
+This creates and checks out a new topic (local) branch called @rails3@. To get back to your working code:
+
+{% highlight :bash %}
+git checkout master
+{% endhighlight %}
+
+*Thirdly, have ready a program that does diffs* on directories as well as files, preferably with a GUI (on Ubuntu I use "Meld":http://meld.sourceforge.net/).
+
+
+h2. The Method
+
+Generate a new Rails 3 application in a separate directory, outside your version control repository:
+
+{% highlight :bash %}
+rails sample_app
+{% endhighlight %}
+
+The relevant part of your directory tree is now:
+
+{% highlight :bash %}
+~/dev/my_app
+~/dev/sample_app
+{% endhighlight %}
+
+Go into the sample app and use the generators to get some more boilerplate code. If you have a @User@ model and a @UsersController@, generate a scaffold for @User@:
+
+{% highlight :bash %}
+rails generate scaffold User
+{% endhighlight %}
+
+You can continue and generate more model, controller, view, and other code, or you can stop here.
+
+Now, open a directory diff on your app and the sample app. Go through each file and merge the new Rails 3 boilerplate code into your application, replacing the old. The boilerplate is generally well-commented and you can learn as you go, file by file, looking up anything that isn't specifically explained by the comments.
+
+This approach basically amounts to re-creating your application from scratch. It sounds like a lot of work, but you don't have to spend time figuring out what you need to change, and you learn the new Rails-endorsed way of doing things as you go. It's a more hands-on approach which I find to be more fun and quickly-instructive than going piece-by-piece through the release notes and changing one thing at a time. Once I have an app running I'm then ready to read through the release notes which don't seem nearly as daunting, and which will tell me about the rest of the changes not indicated by the generated code.
+
+
+
+
+{% highlight :bash %}
+{% endhighlight %}
+
+{% highlight :bash %}
+{% endhighlight %}
+
+{% highlight :bash %}
+{% endhighlight %}
+
+
+h2. Help the Community Upgrade
+
+I know this is difficult since you don't _know_ Rails 3 yet, but most people are in the same boat right now, so this is a time when contributions would be _especially_ appreciated.)
+
+
+* how to commit?
+
+
+
+
+h2. Various Changes
+
+ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(...)
+is now just:
+Date::DATE_FORMATS.merge!(...)
+
+
+* try the rails_upgrade gem (?)
+* railsplugins.org for compatibility
+* Release notes: http://guides.rails.info/3_0_release_notes.html
