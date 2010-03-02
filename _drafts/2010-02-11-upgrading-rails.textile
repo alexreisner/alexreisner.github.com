@@ -89,3 +89,9 @@ Date::DATE_FORMATS.merge!(...)
 * try the rails_upgrade gem (?)
 * railsplugins.org for compatibility
 * Release notes: http://guides.rails.info/3_0_release_notes.html
+
+
+{% comment %}
+see "Why Port?" presentation at http://en.oreilly.com/railswinter10
+{% endcomment %}
+
