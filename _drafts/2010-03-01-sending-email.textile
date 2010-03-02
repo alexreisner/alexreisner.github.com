@@ -1,0 +1,86 @@
+---
+title: "Sending Email From a Web Site"
+layout: article
+categories: articles
+---
+If you've ever run a web site which sends emails to its users you may have found yourself on the opposite end of the spam problem. That is, other servers think your emails are spam and refuse to accept them. If you're sending customer invoices, order confirmations, or product download instructions, this is a serious problem. You may be tempted to use an external service for sending emails, and this may be a good solution in your case, but I would argue that any well-configured web server should be able to successfully send emails. What about the output of cron jobs? Or developer notifications when errors occur? Web servers need to send email, so how to we make it work?
+
+There is a lot of advice out there on how to make sure messages are delivered properly, but some of it is specific to particular email providers and among the general advice, some points are more significant than others. Here are some tips, in roughly descending order of importance, based on my experience.
+
+
+h3. 1. Avoid Sending Spam
+
+This may sound either obvious or irrelevant, but it's really important to be familiar with the ways you could be sending spam without even knowing it.
+
+* backscatter
+* open relay
+* avoid sending to undeliverable addresses
+
+solutions:
+* reject connections on port 25
+* hostname/mailname
+* avoid sending to people who may report message as spam
+  * be sure to include unsubscribe instructions
+
+
+h3. 2. Remove Your Server From Spamhaus's Blocklists
+
+Start by "checking if you're on Spamhaus's blocklists":http://www.spamhaus.org/lookup.lasso. Chances are your server's IP address is on the Policy Block List (PBL). If so, *do not get mad at Spamhaus*. The PBL is a *block* list, not a *black* list, and Spamhaus isn't telling everyone that you're a spammer. Because most computers connected to the Internet don't send email, all IP addresses are on the PBL by default. If you want to send email you simply get your IP address de-listed (it doesn't take long). This is a good thing. The only unfortunate part is that most people don't know how this works.
+
+If your IP address is on the SBL or XBL you may have a problem. Before doing anything else, go back to step #1 and make sure you're not sending spam. If you're absolutely certain that your server is not sending spam you can try to get yourself removed from Spamhaus's list, or contact your hosting provider for a new IP address--you may have inherited a previous customer's problem.
+
+
+h3. 3. Configure Reverse DNS Lookups
+
+
+h3. 4. Create SPF Records
+
+This is an important one for delivering messages to Gmail accounts.
+
+
+h3. Sign Email With DomainKeys or DKIM
+
+This is an important step for delivering messages to Yahoo accounts.
+
+
+h3. Format Messages Properly
+
+* format messages properly (headers, body) as per RFC 2821 and 2822
+* always send from same address (https://mail.google.com/support/bin/answer.py?answer=81126)
+* use 'Precedence: bulk' header
+
+
+
+
+
+* http://senderbase.org/senderbase_queries/detailip?search_string=174.143.206.168
+
+* https://mail.google.com/support/bin/answer.py?answer=81126
+* http://help.yahoo.com/l/us/yahoo/mail/postmaster/index.html
+* http://help.yahoo.com/l/us/yahoo/mail/postmaster/errors/postmaster-26.html
+* http://worldnet.att.net/general-info/block_inquiry.html
+
+domain keys w/ postfix:
+* http://www.howtoforge.com/postfix_dkfilter_domain_keys_implementation
+* http://anothersysadmin.wordpress.com/2008/01/16/domainkeysdkim-with-postfix/
+
+AOL Technical Standards for E-mail Delivery:
+http://postmaster.aol.com/guidelines/standards.html
+
+ServerFault question:
+http://serverfault.com/questions/115161/fixing-my-mtas-poor-reputation/115240
+
+SMTP hosts:
+http://www.authsmtp.com/
+http://www.jangosmtp.com/
+
+SMTP host requirements:
+  * access to SMTP log
+  * DomainKeys/DKIM
+  * correct reverse DNS lookups
+  * 
+
+
+* Good questions about using Google Apps for SMTP with Rails:
+http://www.ruby-forum.com/topic/166338
+
