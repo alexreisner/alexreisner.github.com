@@ -1,0 +1,35 @@
+---
+title: "JavaScript Framework Translation Guide"
+layout: article
+categories: articles
+---
+You may have decided on your favorite JavaScript framework, but if you're working on many different sites, chances are you're going to know how to use some others as well. What follows is a translation mini-dictionary: instructions for accomplishing common tasks in jQuery, Prototype, MooTools, and YUI.
+
+h2. Listeners
+
+h3. DOM Ready
+
+jQuery: $(document).ready(...);
+  http://api.jquery.com/ready/
+Prototype: document.observe("dom:loaded", ...);
+  http://www.prototypejs.org/api/document/observe
+MooTools: window.addEvent('domready', ...);
+  http://mootools.net/docs/core/Utilities/DomReady
+YUI2: YAHOO.util.Event.onDOMReady(...);
+  http://developer.yahoo.com/yui/examples/event/event-timing.html
+YUI3: YUI().use('node-base', function(Y){ Y.on('domready', ..., Y);
+  http://developer.yahoo.com/yui/3/examples/event/event-timing.html
+
+
+h3. Page Loaded (including images, etc)
+
+jQuery: $(window).load(...);
+  http://api.jquery.com/load-event/
+Prototype: ???
+MooTools: window.addEvent('load', ...);
+  http://demos111.mootools.net/DomReadyVS.Load
+YUI2: YAHOO.util.Event.onContentReady(...);
+  http://developer.yahoo.com/yui/examples/event/event-timing.html
+YUI3: YUI().use('node-base', function(Y){ Y.on("load", ..., window); });
+  http://developer.yahoo.com/yui/3/examples/event/event-timing.html
+
