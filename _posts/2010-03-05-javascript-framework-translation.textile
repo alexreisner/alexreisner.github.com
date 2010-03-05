@@ -78,9 +78,44 @@ YUI().use('base', function(Y){
 {% endhighlight %}
 
 
+h3. Respond to Click Event
+
+"*jQuery*":http://api.jquery.com/bind
+
+{% highlight :javascript %}
+$("#id").bind("click", function(event){...});
+{% endhighlight %}
+
+"*Prototype*":http://www.prototypejs.org/api/event/observe
+
+{% highlight :javascript %}
+Event.observe($('id'), "click", function(event) {...});
+{% endhighlight %}
+
+"*MooTools*":http://mootools.net/docs/core/Element/Element.Event#Element:addEvent
+
+{% highlight :javascript %}
+$('id').addEvent('click', function(event){...});
+{% endhighlight %}
+  
+"*YUI2*":http://developer.yahoo.com/yui/event
+
+{% highlight :javascript %}
+YAHOO.util.Event.addListener("id", "click", function(event){...});
+{% endhighlight %}
+  
+"*YUI3*":http://developer.yahoo.com/yui/3/event
+
+{% highlight :javascript %}
+YUI().use('node-base', function(Y) {
+  Y.on("click", function(event){...}, "#id");
+});
+{% endhighlight %}
+
+
 h2. DOM Manipulation
 
-Note that frameworks' selectors usually return proxies (eg, a @jQuery@ object) instead of actual DOM objects. Please see each framework's documentation for methods of manipulating DOM elements.
+Note that most frameworks' selectors return proxies (eg, a @jQuery@ object) instead of actual DOM objects. Please see each framework's documentation for methods of manipulating DOM elements.
 
 h3. Get Element By ID
 
