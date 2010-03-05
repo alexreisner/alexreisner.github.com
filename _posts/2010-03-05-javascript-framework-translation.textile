@@ -25,7 +25,7 @@ document.observe("dom:loaded", ...);
 "*MooTools*":http://mootools.net/docs/core/Utilities/DomReady
 
 {% highlight :javascript %}
-window.addEvent('domready', ...);
+window.addEvent("domready", ...);
 {% endhighlight %}
 
 "*YUI2*":http://developer.yahoo.com/yui/examples/event/event-timing.html
@@ -37,8 +37,8 @@ YAHOO.util.Event.onDOMReady(...);
 "*YUI3*":http://developer.yahoo.com/yui/3/examples/event/event-timing.html
 
 {% highlight :javascript %}
-YUI().use('base', function(Y){
-  Y.on('domready', ..., Y);
+YUI().use("base", function(Y){
+  Y.on("domready", ..., Y);
 });
 {% endhighlight %}
 
@@ -60,7 +60,7 @@ Event.observe(window, "load", ...);
 "*MooTools*":http://demos111.mootools.net/DomReadyVS.Load
 
 {% highlight :javascript %}
-window.addEvent('load', ...);
+window.addEvent("load", ...);
 {% endhighlight %}
   
 "*YUI2*":http://developer.yahoo.com/yui/examples/event/event-timing.html
@@ -72,7 +72,7 @@ YAHOO.util.Event.onContentReady(...);
 "*YUI3*":http://developer.yahoo.com/yui/3/examples/event/event-timing.html
 
 {% highlight :javascript %}
-YUI().use('base', function(Y){
+YUI().use("base", function(Y){
   Y.on("load", ..., window);
 });
 {% endhighlight %}
@@ -89,13 +89,13 @@ $("#id").bind("click", function(event){...});
 "*Prototype*":http://www.prototypejs.org/api/event/observe
 
 {% highlight :javascript %}
-Event.observe($('id'), "click", function(event) {...});
+Event.observe($("id"), "click", function(event) {...});
 {% endhighlight %}
 
 "*MooTools*":http://mootools.net/docs/core/Element/Element.Event#Element:addEvent
 
 {% highlight :javascript %}
-$('id').addEvent('click', function(event){...});
+$("id").addEvent("click", function(event){...});
 {% endhighlight %}
   
 "*YUI2*":http://developer.yahoo.com/yui/event
@@ -107,7 +107,7 @@ YAHOO.util.Event.addListener("id", "click", function(event){...});
 "*YUI3*":http://developer.yahoo.com/yui/3/event
 
 {% highlight :javascript %}
-YUI().use('node-base', function(Y) {
+YUI().use("node-base", function(Y) {
   Y.on("click", function(event){...}, "#id");
 });
 {% endhighlight %}
@@ -122,31 +122,31 @@ h3. Get Element By ID
 "*jQuery*":http://api.jquery.com/jQuery
 
 {% highlight :javascript %}
-$('#id')
+$("#id")
 {% endhighlight %}
   
 "*Prototype*":http://api.prototypejs.org/dom/dollar.html
 
 {% highlight :javascript %}
-$('id') // or $$('#id')
+$("id") // or $$("#id")
 {% endhighlight %}
   
 "*MooTools*":http://mootools.net/docs/core/Utilities/Selectors
 
 {% highlight :javascript %}
-$('id')
+$("id")
 {% endhighlight %}
   
 "*YUI2*":http://developer.yahoo.com/yui/docs/YAHOO.util.Dom.html#method_get
 
 {% highlight :javascript %}
-YAHOO.util.Dom.get('id')
+YAHOO.util.Dom.get("id")
 {% endhighlight %}
   
 "*YUI3*":http://developer.yahoo.com/yui/3/api/Node.html#method_one
 
 {% highlight :javascript %}
-YUI().use('node', function(Y){
+YUI().use("node", function(Y){
   Y.one("#id");
 });
 {% endhighlight %}
@@ -158,29 +158,29 @@ h3. Get All &lt;p&gt;s Within an Element
 "*jQuery*":http://api.jquery.com/jQuery/
 
 {% highlight :javascript %}
-$('#id p') // returns a jQuery object
+$("#id p") // returns a jQuery object
 {% endhighlight %}
   
 
 "*Prototype*":http://api.prototypejs.org/dom/dollardollar.html
 
 {% highlight :javascript %}
-$$('#id p')
+$$("#id p")
 {% endhighlight %}
 
 
 "*MooTools*":http://mootools.net/docs/core/Utilities/Selectors#Element:getElements
 
 {% highlight :javascript %}
-$('id').getElements('p')
+$("id").getElements("p")
 {% endhighlight %}
 
 
 "*YUI2*":http://developer.yahoo.com/yui/docs/YAHOO.util.Dom.html#method_getChildrenBy
 
 {% highlight :javascript %}
-YAHOO.util.Dom.getChildrenBy('id', function(el){
-  return el.nodeName.toLowerCase() == 'p';
+YAHOO.util.Dom.getChildrenBy("id", function(el){
+  return el.nodeName.toLowerCase() == "p";
 })
 {% endhighlight %}
 
@@ -188,7 +188,7 @@ YAHOO.util.Dom.getChildrenBy('id', function(el){
 "*YUI3*":http://developer.yahoo.com/yui/3/api/Node.html#method_one
 
 {% highlight :javascript %}
-YUI().use('node', function(Y){
+YUI().use("node", function(Y){
   Y.one("#id p");
 });
 {% endhighlight %}
@@ -200,35 +200,35 @@ h3. Append Child Element to a Parent
 "*jQuery*":http://api.jquery.com/append
 
 {% highlight :javascript %}
-$('#id').append(...);
+$("#id").append(...);
 {% endhighlight %}
   
 
 "*Prototype*":http://www.prototypejs.org/api/element/insert
 
 {% highlight :javascript %}
-insert($('id'), ...);
+insert($("id"), ...);
 {% endhighlight %}
 
 
 "*MooTools*":http://mootools.net/docs/core/Element/Element#Element:inject
 
 {% highlight :javascript %}
-$('id').inject(...);
+$("id").inject(...);
 {% endhighlight %}
 
 
 "*YUI2*":http://developer.yahoo.com/yui/docs/YAHOO.util.Element.html#method_appendChild
 
 {% highlight :javascript %}
-YAHOO.util.Dom.get('id').appendChild(...);
+YAHOO.util.Dom.get("id").appendChild(...);
 {% endhighlight %}
 
 
 "*YUI3*":http://developer.yahoo.com/yui/3/api/Node.html#method_appendChild
 
 {% highlight :javascript %}
-YUI().use('node', function(Y){
+YUI().use("node", function(Y){
   Y.one("#id").appendChild(...);
 });
 {% endhighlight %}
@@ -242,16 +242,16 @@ h3. GET Request With Parameters (and Handle Successful Response)
 "*jQuery*":http://api.jquery.com/jQuery.get/
 
 {% highlight :javascript %}
-$.get('/url', {request: 'params'}, function(data, status){...});
+$.get("/url", {request: "params"}, function(data, status){...});
 {% endhighlight %}
   
 
 "*Prototype*":http://api.prototypejs.org/ajax/ajax/request.html
 
 {% highlight :javascript %}
-new Ajax.Request('/url', {
-  method:     'get',
-  parameters: {request: 'params'},
+new Ajax.Request("/url", {
+  method:     "get",
+  parameters: {request: "params"},
   onSuccess:  function(response){...}
 });
 {% endhighlight %}
@@ -261,9 +261,9 @@ new Ajax.Request('/url', {
 
 {% highlight :javascript %}
 new Request({
-  method:    'get',
-  url:       '/url',
-  data:      {request: 'params'},
+  method:    "get",
+  url:       "/url",
+  data:      {request: "params"},
   onSuccess: function(text, xml){...}
 });
 {% endhighlight %}
@@ -272,7 +272,7 @@ new Request({
 "*YUI2*":http://developer.yahoo.com/yui/connection/
 
 {% highlight :javascript %}
-YAHOO.util.Connect.asyncRequest('GET', '/url?with=params', {
+YAHOO.util.Connect.asyncRequest("GET", "/url?with=params", {
   success: function(response){...}
 });
 {% endhighlight %}
@@ -282,7 +282,7 @@ YAHOO.util.Connect.asyncRequest('GET', '/url?with=params', {
 
 {% highlight :javascript %}
 YUI().use("io", function(Y){
-  Y.io('/url?with=params', {
+  Y.io("/url?with=params", {
     on: {
       success: function(id, o, args){...}
     }
