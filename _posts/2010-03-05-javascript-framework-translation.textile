@@ -1,0 +1,258 @@
+---
+title: "JavaScript Framework Translation Guide"
+layout: article
+categories: articles
+---
+You may have already chosen your favorite JavaScript framework, but if you're working on many different sites, chances are you need to know how to use some other frameworks as well. What follows is a mini translation dictionary: instructions for accomplishing some common tasks in "jQuery":http://jquery.com/, "Prototype":http://prototypejs.org/, "MooTools":http://mootools.net/, and "YUI":http://developer.yahoo.com/yui/ (versions 2 and 3). This should also serve as a means for superficial comparison of the libraries.
+
+
+h2. Event Listeners
+
+h3. DOM Ready
+
+"*jQuery*":http://api.jquery.com/ready
+
+{% highlight :javascript %}
+$(document).ready(...);
+{% endhighlight %}
+
+"*Prototype*":http://www.prototypejs.org/api/document/observe
+
+{% highlight :javascript %}
+document.observe("dom:loaded", ...);
+{% endhighlight %}
+  
+"*MooTools*":http://mootools.net/docs/core/Utilities/DomReady
+
+{% highlight :javascript %}
+window.addEvent('domready', ...);
+{% endhighlight %}
+
+"*YUI2*":http://developer.yahoo.com/yui/examples/event/event-timing.html
+
+{% highlight :javascript %}
+YAHOO.util.Event.onDOMReady(...);
+{% endhighlight %}
+  
+"*YUI3*":http://developer.yahoo.com/yui/3/examples/event/event-timing.html
+
+{% highlight :javascript %}
+YUI().use('base', function(Y){
+  Y.on('domready', ..., Y);
+});
+{% endhighlight %}
+
+
+h3. Page Fully Loaded (including images, etc)
+
+"*jQuery*":http://api.jquery.com/load-event
+
+{% highlight :javascript %}
+$(window).load(...);
+{% endhighlight %}
+
+"*Prototype*":http://www.prototypejs.org/api/document/observe
+
+{% highlight :javascript %}
+Event.observe(window, "load", ...);
+{% endhighlight %}
+
+"*MooTools*":http://demos111.mootools.net/DomReadyVS.Load
+
+{% highlight :javascript %}
+window.addEvent('load', ...);
+{% endhighlight %}
+  
+"*YUI2*":http://developer.yahoo.com/yui/examples/event/event-timing.html
+
+{% highlight :javascript %}
+YAHOO.util.Event.onContentReady(...);
+{% endhighlight %}
+  
+"*YUI3*":http://developer.yahoo.com/yui/3/examples/event/event-timing.html
+
+{% highlight :javascript %}
+YUI().use('base', function(Y){
+  Y.on("load", ..., window);
+});
+{% endhighlight %}
+
+
+h2. DOM Manipulation
+
+Note that frameworks' selectors usually return proxies (eg, a @jQuery@ object) instead of actual DOM objects. Please see each framework's documentation for methods of manipulating DOM elements.
+
+h3. Get Element By ID
+
+"*jQuery*":http://api.jquery.com/jQuery
+
+{% highlight :javascript %}
+$('#id')
+{% endhighlight %}
+  
+"*Prototype*":http://api.prototypejs.org/dom/dollar.html
+
+{% highlight :javascript %}
+$('id') // or $$('#id')
+{% endhighlight %}
+  
+"*MooTools*":http://mootools.net/docs/core/Utilities/Selectors
+
+{% highlight :javascript %}
+$('id')
+{% endhighlight %}
+  
+"*YUI2*":http://developer.yahoo.com/yui/docs/YAHOO.util.Dom.html#method_get
+
+{% highlight :javascript %}
+YAHOO.util.Dom.get('id')
+{% endhighlight %}
+  
+"*YUI3*":http://developer.yahoo.com/yui/3/api/Node.html#method_one
+
+{% highlight :javascript %}
+YUI().use('node', function(Y){
+  Y.one("#id");
+});
+{% endhighlight %}
+
+
+
+h3. Get All &lt;p&gt;s Within an Element
+
+"*jQuery*":http://api.jquery.com/jQuery/
+
+{% highlight :javascript %}
+$('#id p') // returns a jQuery object
+{% endhighlight %}
+  
+
+"*Prototype*":http://api.prototypejs.org/dom/dollardollar.html
+
+{% highlight :javascript %}
+$$('#id p')
+{% endhighlight %}
+
+
+"*MooTools*":http://mootools.net/docs/core/Utilities/Selectors#Element:getElements
+
+{% highlight :javascript %}
+$('id').getElements('p')
+{% endhighlight %}
+
+
+"*YUI2*":http://developer.yahoo.com/yui/docs/YAHOO.util.Dom.html#method_getChildrenBy
+
+{% highlight :javascript %}
+YAHOO.util.Dom.getChildrenBy('id', function(el){
+  return el.nodeName.toLowerCase() == 'p';
+})
+{% endhighlight %}
+
+
+"*YUI3*":http://developer.yahoo.com/yui/3/api/Node.html#method_one
+
+{% highlight :javascript %}
+YUI().use('node', function(Y){
+  Y.one("#id p");
+});
+{% endhighlight %}
+
+
+
+h3. Append Child Element to a Parent
+
+"*jQuery*":http://api.jquery.com/append
+
+{% highlight :javascript %}
+$('#id').append(...);
+{% endhighlight %}
+  
+
+"*Prototype*":http://www.prototypejs.org/api/element/insert
+
+{% highlight :javascript %}
+insert($('id'), ...);
+{% endhighlight %}
+
+
+"*MooTools*":http://mootools.net/docs/core/Element/Element#Element:inject
+
+{% highlight :javascript %}
+$('id').inject(...);
+{% endhighlight %}
+
+
+"*YUI2*":http://developer.yahoo.com/yui/docs/YAHOO.util.Element.html#method_appendChild
+
+{% highlight :javascript %}
+YAHOO.util.Dom.get('id').appendChild(...);
+{% endhighlight %}
+
+
+"*YUI3*":http://developer.yahoo.com/yui/3/api/Node.html#method_appendChild
+
+{% highlight :javascript %}
+YUI().use('node', function(Y){
+  Y.one("#id").appendChild(...);
+});
+{% endhighlight %}
+
+
+
+h2. AJAX
+
+h3. GET Request With Parameters (and Handle Successful Response)
+
+"*jQuery*":http://api.jquery.com/jQuery.get/
+
+{% highlight :javascript %}
+$.get('/url', {request: 'params'}, function(data, status){...});
+{% endhighlight %}
+  
+
+"*Prototype*":http://api.prototypejs.org/ajax/ajax/request.html
+
+{% highlight :javascript %}
+new Ajax.Request('/url', {
+  method:     'get',
+  parameters: {request: 'params'},
+  onSuccess:  function(response){...}
+});
+{% endhighlight %}
+
+
+"*MooTools*":http://mootools.net/docs/core/Request/Request
+
+{% highlight :javascript %}
+new Request({
+  method:    'get',
+  url:       '/url',
+  data:      {request: 'params'},
+  onSuccess: function(text, xml){...}
+});
+{% endhighlight %}
+
+
+"*YUI2*":http://developer.yahoo.com/yui/connection/
+
+{% highlight :javascript %}
+YAHOO.util.Connect.asyncRequest('GET', '/url?with=params', {
+  success: function(response){...}
+});
+{% endhighlight %}
+
+
+"*YUI3*":http://developer.yahoo.com/yui/3/io/
+
+{% highlight :javascript %}
+YUI().use("io", function(Y){
+  Y.io('/url?with=params', {
+    on: {
+      success: function(id, o, args){...}
+    }
+  });
+});
+{% endhighlight %}
+
+
