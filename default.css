@@ -36,7 +36,18 @@ body {
   vertical-align: top;
   padding: 1px;
 }
+.numeric { text-align:right; }
+.bold { font-weight:bold; }
 
+
+/* --- Tables --- */
+td, th {
+	border: none;
+	padding: 2px 12px 0 0;
+}
+th {
+  border-bottom: 1px solid #999;
+}
 
 /* --- Forms (for Informant article) --- */
 .informant_field {
