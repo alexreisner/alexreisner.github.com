@@ -82,7 +82,7 @@ input {
 
 /* --- Typography --- */
 ul {
-  padding-left: 18px;
+  padding-left: 0;
 }
 ul.posts {
   padding-left: 0;
