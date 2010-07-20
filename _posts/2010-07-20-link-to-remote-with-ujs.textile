@@ -1,0 +1,79 @@
+---
+title: "Duplicate link_to_remote With Rails 3 and UJS"
+layout: article
+categories: articles
+---
+In "Railscast #205":http://railscasts.com/episodes/205-unobtrusive-javascript Ryan Bates shows how to use UJS to update an element using AJAX. However, with his technique the server returns a JavaScript response: code which inserts a string into an element on the page. The problem with this approach is that the server needs to know where to insert its response (DOM ID of the target element). Most of my Rails 2 applications were designed so that each page is a "client" which receives a plain HTML response from the server and inserts the body of that response into the appropriate element on the page. This means the same server action (URL) can be used to generate content that gets inserted into different pages on the site. Not only does this make server actions simpler and more general, it makes their output easier to test.
+
+Turning HTML into a JavaScript-escaped string on the server just doesn't feel right.
+
+
+h2. How To Do It
+
+Rails 3 dictates that we replace things like this:
+
+{% highlight :erb %}
+<%= link_to_remote "more", :url => {...} %>
+{% endhighlight %}
+
+with things like this:
+
+{% highlight :erb %}
+<%= link_to "more", {...}, :remote => true %>
+{% endhighlight %}
+
+With good old @link_to_remote@ we could pass an @:update@ option to achieve the system described above, in which the page receives a generic response and updates the specified element with it. But @link_to@ doesn't accept an @:update@ option because with Rails 3 and UJS we want to avoid putting JavaScript in our @<a>@ tag attributes. In Rails 3 @link_to@ with @remote="true"@ renders something like this:
+
+{% highlight :html %}
+<a href="..." data-remote="true">more...</a>
+{% endhighlight %}
+
+Then the Rails UJS drivers (currently available for Prototype and jQuery) look for links and forms with a @data-remote="true"@ attribute and AJAX-ify them. So how do we do this? If we don't write the code that makes the AJAX request, how can we access the response? The answer is: events.
+
+The UJS drivers trigger six events on every AJAX call:
+
+* @ajax:before@
+* @ajax:loading@
+* @ajax:success@
+* @ajax:failure@
+* @ajax:complete@
+* @ajax:after@
+
+You should recognize these event names from the old @link_to_remote@ method options, and we simply need to listen for them on our AJAX-triggering elements.
+
+
+h2. Example
+
+Let's say we have a page that lists the ten most popular products in our database. At the end is a link to load all the remaining products via AJAX:
+
+{% highlight :erb %}
+<ul id="products-list">
+  <li>...</li>
+  <li>...</li>
+  <li>...</li>
+  ...
+</ul>
+<%= link_to "more...", "/products/all", :id => "load-more", :remote => true %>
+{% endhighlight %}
+
+The server returns plain HTML and we use the @ajax:x@ events triggered by the Rails UJS drivers (here jQuery) to grab the server's response and insert it into the right element on the page:
+
+{% highlight :erb %}
+<%= javascript_tag do %>
+  $("#load-more").bind("ajax:complete", function(et, e){
+    $("#products-list").html(e.responseText); // insert content
+  });
+<% end %>
+{% endhighlight %}
+
+If desired, we can also use the @ajax:loading@ event to change the link text (or show a spinner):
+
+{% highlight :erb %}
+<%= javascript_tag do %>
+  $("load-more").bind("ajax:loading", function(et, e){
+    $(this).html("Loading..."); // swap link text
+  });
+<% end %>
+{% endhighlight %}
+
+
