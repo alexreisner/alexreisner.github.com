@@ -1,0 +1,33 @@
+---
+title: "Testing Serialized Fixtures in Rails 3"
+layout: article
+categories: articles
+---
+As you may know, you can use Rails to store serialized values in your database. ActiveRecord silently handles the conversion of values to and from YAML as objects are stored and loaded. If you have some data that you need to keep around but which you don't ever need to perform queries on, such as raw PayPal Instant Payment Notification parameters (presumably you extract any important information into separate attributes) you can store it in a serialized hash. Let's say you have a Payment model with an @ipn_params@ attribute. In your model you just need a line like this:
+
+{% highlight :ruby %}
+serialize :ipn_params
+{% endhighlight %}
+
+and you will be able to use the attribute for storing a Ruby hash, array, or anything that can be converted to YAML. However, what do you do when you're testing such a model using fixtures? In Rails 2 there was very convenient (though not well-documented) technique; you could do something like this, assuming @params@ and @ducks@ are serialized attributes (hash and array respectively):
+
+{% highlight :yaml %}
+payment1:
+  date: "2010-09-02"
+  params: {date: 2010-09-02, amount: 102.45, method: visa}
+  ducks: [4, 5, 6, 3, 12, 97]
+{% endhighlight %}
+
+Note that you _must_ include a space after each colon. However, in Rails 3, some time after 3.0.0.beta4, this stopped working. I'm not sure if there is an official alternate syntax, but I've been using this, which has worked so far:
+
+{% highlight :yaml %}
+payment1:
+  date: "2010-09-02"
+  params: <%= {
+    "date" => "2010-09-02",
+    "amount" => "102.45",
+    "method" => "visa"}.to_yaml.inspect %>
+  ducks: <%= [4, 5, 6, 3, 12, 97].to_yaml.inspect %>
+{% endhighlight %}
+
+If someone has a more elegant method please post it in the comments, but for now this is at least a quick fix to stop your tests from failing.
