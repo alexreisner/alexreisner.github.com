@@ -1,0 +1,45 @@
+---
+title: "Vim Heresy"
+layout: article
+categories: articles
+---
+I don't expect anyone to like this article.
+
+Nevertheless, I feel it needs to be written.
+
+I first used Vi about 18 years ago. I thought it was pretty weird, but it was the only text editor I knew of on Unix so I learned the basics. My main editor, however, has always been one with a "normal" GUI (EditPlus, Gedit, etc). I've tried, on probably eight different occasions, to make Vi/Vim/Gvim my main tool, each time learning a little more, picking up my .vimrc from where I left off, but never successfully making the switch.
+
+Until now.
+
+To explain briefly: I've tried switching to Vim so many times because no matter what editor I've used I've always needed to resort to Vim for something. Whether it's opening very large files, doing complex regex search and replace, column selection, or various types of advanced text formatting, Vim is the only editor I've used that does _everything_ I want it to. But along with Vim comes a dogmatic, somewhat macho, insistence that the only way to use it is with the alphanumeric part of the keyboard. No mouse, no arrow keys. And over and over, after a few days of giving it a good try, I would give up.
+
+Then, a few months ago I read a great article called "Everyone Who Tried to Convince Me to use Vim was Wrong":http://yehudakatz.com/2010/07/29/everyone-who-tried-to-convince-me-to-use-vim-was-wrong. The author's point is not that you shouldn't use Vim, but that you shouldn't _necessarily_ learn it the way everyone says you should. His successful conversion happened like this: he got MacVim, installed NERDTree, used his mouse, and stayed mostly in insert mode. As the days went by he learned new commands and gradually became more productive.
+
+If you're a hardcore Vim user no doubt you're leaning over to throw up in your trash can right now.
+
+But this is how I finally made the transition too. I already knew a lot of commands. I got around with H, J, K, and L, and also W, B, and E. But moving blocks of text constitutes a significant portion of my work and I always had a hard time doing it quickly in Vim. Select/drag/drop with the mouse in a GUI editor is pretty hard to beat and this was one of the main reasons I wasn't using Vim. When I read Yehuda Katz's article and finally realized I was subjecting myself unnecessarily to the Vim dogma, I again loaded up Gvim and my old .vimrc and proceeded to select text with the mouse and cut and paste with d and p. It felt "wrong," but it worked.
+
+To be clear: I find the mouse as frustrating as anyone. To me, a mouse is good for applications like drawing programs where there is an actual two-dimensional space to navigate. There simply aren't enough commands in most applications that aiming an arrow at a point among the hundreds of thousands of pixels on a monitor makes sense. We already have a control device with over 50 _physical_ buttons right under our fingers that we're all very familiar with. But the mouse is apparently less threatening to new computer users so most GUI software is intended to be used with a mouse, and if you work in any standard OS you probably have to use the mouse for _some_ things, right?
+
+The only thing I find more frustrating than using the mouse is moving my hand to it, and then back again to type. But here's the thing: if your hand is already on the mouse, because you were just doing something in a web browser or some other mouse-operated program, it might be faster to keep it there. *If you're returning to Gvim with your hand on the mouse, might it not be faster to place the cursor with a click than with a sequence of keystrokes?* I'm not saying you keep your hand on the mouse after that, but unless you _never_ use the mouse at all, doesn't Gvim/MacVim give you a pretty significant convenience over non-GUI Vim?
+
+Don't worry, your disgust at this idea is endorsed by O'Reilly, whose book _Learning the Vi and Vim Editors_ includes the following:
+
+bq. "...some veteran Vim users (this author included!) may cringe at the thought of grafting a GUI onto their workhorse editor..."
+
+He goes on to show that Gvim actually adds some very nice features, but why does he need this qualification? I suspect he worries about losing credibility if he doesn't remind the reader that he's a Vi Tough Guy. Why does Vi seem to inspire the worst kind of religious fervor, the kind that says there's only one way to do things?
+
+As programmers we have a tendency to defend the technology we use and attack the things we don't. Ruby programmers tend to despise Python, and vice versa, when the languages are awfully similar. There are some superficial differences like Python's use of significant whitespace, but in more significant ways the languages are very comparable, and the communities feed off of each other's work. It's always looked like a symbiotic relationship to me, but it's one in which the majority of participants are kicking and screaming the whole time. People will also swear that one distribution of Linux is amazing while another is awful. Again, they're all different, and certainly everyone has a favorite, but is any Linux distribution really deserving of the hatred they sometimes receive?
+
+I think, because we work in an industry where keeping up with the latest inventions is vital to our survival, and because we depend on a large body of somewhat esoteric knowledge to stay relevant, we put pressure on ourselves to know _everything_. Not knowing things means such certain death in the field of computer programming that we prefer to put down things we don't know about than admit they might be worth knowing. We're so afraid of being non-experts that we shrink our universe down to include just what we know. And we build up what we do know. Not just its relevance and sophistication, but its complexity. And I think that's what happens with Vim. If we let people use the arrow keys, we somehow know less. Suddenly the thing we mastered is no longer as amazing and esoteric.
+
+This is obviously not productive. Ignoring things we don't know only leads to stasis and eventually boredom. And telling people to burn their mouse and chop off their arrow keys only ensures that fewer people use Vim, which is not a good thing in the long run. More users means more, better plugins. And yeah, *everyone* has used an arrow key in Vim at least once, so that plugin you love was written by a former arrow key user. Aaahhhh! The horror! Newbies become masters. It's amazing how that never seems to stop happening.
+
+Anyway, I guess my point is that these rules we have for talking about Vim are insane. I often need to open a lot of files at once and keep them in logical groups so I use tabs, which is another Vim no-no. Most Vim guides either don't mention them or recommend against using them. But why? Of all the possible methods for working with multiple files in Vim, tabs should be the most familiar to new users. Why wouldn't we tell beginners to use them? Why is Yehuda Katz in the minority when he suggests wading into Vim gradually, rather than jumping off the high dive?
+
+Because it makes some people feel less smart.
+
+That just ain't right.
+
+<br /><br /><br />
+_Check out my constantly-evolving ".vimrc":http://github.com/alexreisner/dotfiles/blob/master/.vimrc._
