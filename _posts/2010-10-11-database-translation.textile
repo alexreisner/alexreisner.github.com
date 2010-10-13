@@ -1,0 +1,127 @@
+---
+title: "Database Translation Guide"
+layout: article
+categories: articles
+---
+Despite any misgivings you may have about the concept or _ of database agnosticism, the fact remains that recent web frameworks with excellent tools like ActiveRecord have given us a degree of freedom in the database software we use. For those who are used to MySQL and need to learn PostgreSQL or SQLite (or vice versa), here's some rough command equivalents in each to get you started.
+
+
+h2. Event Listeners
+
+h3. List Available Databases
+
+"*SQLite*":
+
+{% highlight :sql %}
+
+{% endhighlight %}
+
+"*MySQL*":
+
+{% highlight :sql %}
+SHOW DATABASES;
+{% endhighlight %}
+
+"*PostgreSQL*":
+
+{% highlight :sql %}
+SELECT datname FROM pg_database;
+{% endhighlight %}
+
+
+h3. Connect to a Database
+
+"*SQLite*":
+
+{% highlight :sql %}
+
+{% endhighlight %}
+
+"*MySQL*":
+
+{% highlight :sql %}
+USE dbname
+{% endhighlight %}
+
+"*PostgreSQL*":
+
+{% highlight :sql %}
+\connect dbname;
+{% endhighlight %}
+
+
+h3. List Tables in a Database
+
+"*SQLite*":
+
+{% highlight :sql %}
+.schema
+{% endhighlight %}
+
+"*MySQL*":
+
+{% highlight :sql %}
+SHOW tables;
+{% endhighlight %}
+
+"*PostgreSQL*":
+
+{% highlight :sql %}
+\dt
+{% endhighlight %}
+
+
+h3. Display Schema for a Table
+
+"*SQLite*":
+
+{% highlight :sql %}
+.schema tablename
+{% endhighlight %}
+
+"*MySQL*":
+
+{% highlight :sql %}
+DESCRIBE tablename;
+{% endhighlight %}
+
+"*PostgreSQL*":
+
+{% highlight :sql %}
+\d tablename
+{% endhighlight %}
+
+
+h2. Functions
+
+Where there is more than one way to accomplish the same thing I have chosen the most generally-usable functions since that is normally what you'll want to use for cross-database compatibility.
+
+
+h3. Select a substring:
+
+# same in all:
+SUBSTR(string, start [, length])
+
+
+h3. Find a substring position:
+
+# sqlite
+CHARINDEX(...) # requires extensions
+
+# my and postgres:
+POSITION('sta' IN 'haystack');
+
+
+h3. Raise number to a power:
+
+# sqlite
+POWER(base, exponent); # requires extensions
+
+# my and postgres:
+POWER(base, exponent);
+
+
+
+
+get the sqlite extensions at:
+http://www.sqlite.org/contrib/download/extension-functions.c?get=25
