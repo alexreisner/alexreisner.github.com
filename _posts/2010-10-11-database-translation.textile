@@ -3,125 +3,174 @@ title: "Database Translation Guide"
 layout: article
 categories: articles
 ---
-Despite any misgivings you may have about the concept or _ of database agnosticism, the fact remains that recent web frameworks with excellent tools like ActiveRecord have given us a degree of freedom in the database software we use. For those who are used to MySQL and need to learn PostgreSQL or SQLite (or vice versa), here's some rough command equivalents in each to get you started.
+Web frameworks that come with database abstraction layers like ActiveRecord have given us a degree of freedom in the database software we use. Database portability increases the number of platforms on which we can deploy our apps, but you still need to know how to use the different databases. For those of you who are used to MySQL or PostgreSQL and need to learn SQLite (or some other combination of those), here are some rough command equivalents in each to get you started.
 
+h2. Basic Administration
 
-h2. Event Listeners
+Some of these commands are given at your operating system command prompt and others are given at the database client command prompt. I have indicated the prompt in each command below: @$@ is your OS, and @db>@ is your database client.
+
+h3. Start the Database Client
+
+"*SQLite*":http://www.sqlite.org
+
+{% highlight :bash %}
+$ sqlite <db file>
+{% endhighlight %}
+
+"*MySQL*":http://www.mysql.com
+
+{% highlight :bash %}
+$ mysql -u<user> -p <db name>
+{% endhighlight %}
+
+"*PostgreSQL*":http://www.postgresql.org
+
+{% highlight :bash %}
+$ psql -U <user> <db name>
+{% endhighlight %}
+
 
 h3. List Available Databases
 
-"*SQLite*":
+"*SQLite*":http://www.sqlite.org
 
-{% highlight :sql %}
+Databases are stored in separate files, usually with a @.sqlite3@ or @.db@ extension. SQLite cannot find these files for you.
 
+"*MySQL*":http://www.mysql.com
+
+{% highlight :bash %}
+db> SHOW DATABASES;
 {% endhighlight %}
 
-"*MySQL*":
+"*PostgreSQL*":http://www.postgresql.org
 
-{% highlight :sql %}
-SHOW DATABASES;
-{% endhighlight %}
-
-"*PostgreSQL*":
-
-{% highlight :sql %}
-SELECT datname FROM pg_database;
+{% highlight :bash %}
+db> SELECT datname FROM pg_database;
 {% endhighlight %}
 
 
-h3. Connect to a Database
+h3. Create a Database
 
-"*SQLite*":
+"*SQLite*":http://www.sqlite.org
 
-{% highlight :sql %}
-
+{% highlight :bash %}
+$ sqlite3 <db file>
 {% endhighlight %}
 
-"*MySQL*":
+"*MySQL*":http://www.mysql.com
 
-{% highlight :sql %}
-USE dbname
+{% highlight :bash %}
+$ mysqladmin -u<user> -p create <db name>
 {% endhighlight %}
 
-"*PostgreSQL*":
+"*PostgreSQL*":http://www.postgresql.org
 
-{% highlight :sql %}
-\connect dbname;
+{% highlight :bash %}
+$ createdb <db name>
+{% endhighlight %}
+
+
+h3. Change the Current Database
+
+"*SQLite*":http://www.sqlite.org
+
+Close the client and re-open with another file.
+
+"*MySQL*":http://www.mysql.com
+
+{% highlight :bash %}
+db> USE <db name>
+{% endhighlight %}
+
+"*PostgreSQL*":http://www.postgresql.org
+
+{% highlight :bash %}
+db> \connect <db name>
 {% endhighlight %}
 
 
 h3. List Tables in a Database
 
-"*SQLite*":
+"*SQLite*":http://www.sqlite.org
 
-{% highlight :sql %}
-.schema
+{% highlight :bash %}
+db> .schema
 {% endhighlight %}
 
-"*MySQL*":
+"*MySQL*":http://www.mysql.com
 
-{% highlight :sql %}
-SHOW tables;
+{% highlight :bash %}
+db> SHOW tables;
 {% endhighlight %}
 
-"*PostgreSQL*":
+"*PostgreSQL*":http://www.postgresql.org
 
-{% highlight :sql %}
-\dt
+{% highlight :bash %}
+db> \dt
 {% endhighlight %}
 
 
 h3. Display Schema for a Table
 
-"*SQLite*":
+"*SQLite*":http://www.sqlite.org
 
-{% highlight :sql %}
-.schema tablename
+{% highlight :bash %}
+db> .schema <table>
 {% endhighlight %}
 
-"*MySQL*":
+"*MySQL*":http://www.mysql.com
 
-{% highlight :sql %}
-DESCRIBE tablename;
+{% highlight :bash %}
+db> DESCRIBE <table>;
 {% endhighlight %}
 
-"*PostgreSQL*":
+"*PostgreSQL*":http://www.postgresql.org
 
-{% highlight :sql %}
-\d tablename
+{% highlight :bash %}
+db> \d <table>
 {% endhighlight %}
 
 
 h2. Functions
 
-Where there is more than one way to accomplish the same thing I have chosen the most generally-usable functions since that is normally what you'll want to use for cross-database compatibility.
+Where there is more than one way to accomplish the same thing I have chosen the most generally-usable functions since that is normally what you'll want to use for cross-database compatibility. There are some common things which SQLite cannot do out of the box, but a lot of useful functions can be added with the "extension-functions":http://www.sqlite.org/contrib/download/extension-functions.c?get=25. Compilation instructions are in the downloaded file. Load the extension at the SQLite prompt:
+
+{% highlight :bash %}
+.load <compiled extension filename>
+{% endhighlight %}
 
 
-h3. Select a substring:
+h3. Select a Substring
 
-# same in all:
+"*SQLite*":http://www.sqlite.org, "*MySQL*":http://www.mysql.com, and "*PostgreSQL*":http://www.postgresql.org
+
+{% highlight :bash %}
 SUBSTR(string, start [, length])
+{% endhighlight %}
 
 
-h3. Find a substring position:
+h3. Find the Position of a Substring
 
-# sqlite
-CHARINDEX(...) # requires extensions
+"*SQLite*":http://www.sqlite.org
 
-# my and postgres:
+{% highlight :bash %}
+CHARINDEX('sta', 'haystack'); # requires extension-functions
+{% endhighlight %}
+
+"*MySQL*":http://www.mysql.com, and "*PostgreSQL*":http://www.postgresql.org
+
+{% highlight :bash %}
 POSITION('sta' IN 'haystack');
+{% endhighlight %}
 
 
-h3. Raise number to a power:
+h3. Raise a Number to a Power
 
-# sqlite
-POWER(base, exponent); # requires extensions
+"*SQLite*":http://www.sqlite.org, "*MySQL*":http://www.mysql.com, and "*PostgreSQL*":http://www.postgresql.org
 
-# my and postgres:
-POWER(base, exponent);
-
-
+{% highlight :bash %}
+POWER(<base>, <exponent>); # requires extension-functions in SQLite
+{% endhighlight %}
 
 
-get the sqlite extensions at:
-http://www.sqlite.org/contrib/download/extension-functions.c?get=25
+That's all for now, though I will probably add to this list in the future. If there is anything you would like to see added, please let me know.
