@@ -145,7 +145,7 @@ h3. Select a Substring
 "*SQLite*":http://www.sqlite.org, "*MySQL*":http://www.mysql.com, and "*PostgreSQL*":http://www.postgresql.org
 
 {% highlight :bash %}
-SUBSTR(string, start [, length])
+SUBSTR(<string>, <start>, <length>) # length argument is optional
 {% endhighlight %}
 
 
@@ -154,13 +154,13 @@ h3. Find the Position of a Substring
 "*SQLite*":http://www.sqlite.org
 
 {% highlight :bash %}
-CHARINDEX('sta', 'haystack'); # requires extension-functions
+CHARINDEX(<sta>, <haystack>); # requires extension-functions
 {% endhighlight %}
 
 "*MySQL*":http://www.mysql.com, and "*PostgreSQL*":http://www.postgresql.org
 
 {% highlight :bash %}
-POSITION('sta' IN 'haystack');
+POSITION(<sta>, <haystack>);
 {% endhighlight %}
 
 
