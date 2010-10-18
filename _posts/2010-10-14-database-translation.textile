@@ -173,4 +173,25 @@ POWER(<base>, <exponent>); # requires extension-functions in SQLite
 {% endhighlight %}
 
 
+h3. Get the Year From a Date
+
+"*SQLite*":http://www.sqlite.org/lang_datefunc.html
+
+{% highlight :bash %}
+STRFTIME("%Y", <date>)
+{% endhighlight %}
+
+"*MySQL*":http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html#function_year
+
+{% highlight :bash %}
+YEAR(<date>)
+{% endhighlight %}
+
+"*PostgreSQL*":http://www.postgresql.org/docs/8.3/static/functions-datetime.html#FUNCTIONS-DATETIME-TABLE
+
+{% highlight :bash %}
+EXTRACT(YEAR FROM TIMESTAMP <date>)
+{% endhighlight %}
+
+
 That's all for now, though I will probably add to this list in the future. If there is anything you would like to see added, please let me know.
