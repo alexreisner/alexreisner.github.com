@@ -194,4 +194,15 @@ EXTRACT(YEAR FROM TIMESTAMP <date>)
 {% endhighlight %}
 
 
+h3. Select an Alternative to Null
+
+This is commonly achieved in MySQL through the use of @IFNULL(x, y)@, but the @COALESCE@ function is equivalent in the case of two arguments, more general, and more widely implemented. It takes any number of arguments and returns the first one which is not null.
+
+"*SQLite*":http://www.sqlite.org/lang_corefunc.html#coalesce, "*MySQL*":http://dev.mysql.com/doc/refman/5.0/en/comparison-operators.html#function_coalesce, and "*PostgreSQL*":http://www.postgresql.org/docs/8.3/interactive/functions-conditional.html#AEN14491
+
+{% highlight :bash %}
+COALESCE(<value1>, <value2>, ...);
+{% endhighlight %}
+
+
 That's all for now, though I will probably add to this list in the future. If there is anything you would like to see added, please let me know.
