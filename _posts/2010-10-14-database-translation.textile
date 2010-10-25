@@ -154,13 +154,13 @@ h3. Find the Position of a Substring
 "*SQLite*":http://www.sqlite.org
 
 {% highlight :bash %}
-CHARINDEX(<sta>, <haystack>); # requires extension-functions
+CHARINDEX(<sta>, <haystack>) # requires extension-functions
 {% endhighlight %}
 
 "*MySQL*":http://www.mysql.com, and "*PostgreSQL*":http://www.postgresql.org
 
 {% highlight :bash %}
-POSITION(<sta>, <haystack>);
+POSITION(<sta>, <haystack>)
 {% endhighlight %}
 
 
@@ -169,7 +169,7 @@ h3. Raise a Number to a Power
 "*SQLite*":http://www.sqlite.org, "*MySQL*":http://www.mysql.com, and "*PostgreSQL*":http://www.postgresql.org
 
 {% highlight :bash %}
-POWER(<base>, <exponent>); # requires extension-functions in SQLite
+POWER(<base>, <exponent>) # requires extension-functions in SQLite
 {% endhighlight %}
 
 
@@ -201,7 +201,7 @@ This is commonly achieved in MySQL through the use of @IFNULL(x, y)@, but the @C
 "*SQLite*":http://www.sqlite.org/lang_corefunc.html#coalesce, "*MySQL*":http://dev.mysql.com/doc/refman/5.0/en/comparison-operators.html#function_coalesce, and "*PostgreSQL*":http://www.postgresql.org/docs/8.3/interactive/functions-conditional.html#AEN14491
 
 {% highlight :bash %}
-COALESCE(<value1>, <value2>, ...);
+COALESCE(<value1>, <value2>, ...)
 {% endhighlight %}
 
 
