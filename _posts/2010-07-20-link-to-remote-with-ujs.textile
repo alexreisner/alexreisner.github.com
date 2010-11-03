@@ -70,7 +70,7 @@ If desired, we can also use the @ajax:loading@ event to change the link text (or
 
 {% highlight :erb %}
 <%= javascript_tag do %>
-  $("load-more").bind("ajax:loading", function(et, e){
+  $("#load-more").bind("ajax:loading", function(et, e){
     $(this).html("Loading..."); // swap link text
   });
 <% end %>
