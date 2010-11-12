@@ -194,6 +194,25 @@ EXTRACT(YEAR FROM TIMESTAMP <date>)
 {% endhighlight %}
 
 
+h3. If/Then/Else
+
+MySQL provides an IF() function that many people are used to:
+
+"*MySQL*":http://dev.mysql.com/doc/refman/5.0/en/if-statement.html
+
+{% highlight :bash %}
+IF(<condition>, <then-expression>, <else-expression>)
+{% endhighlight %}
+
+This is convenient but not supported by other databases. It's better to use the more widely-implemented CASE statement:
+
+"*SQLite*":http://www.sqlite.org/lang_expr.html#case, "*MySQL*":http://dev.mysql.com/doc/refman/5.0/en/case-statement.html, and "*PostgreSQL*":http://www.postgresql.org/docs/8.4/interactive/functions-conditional.html#AEN15210
+
+{% highlight :bash %}
+CASE WHEN <condition> THEN <expression> ELSE <expression> END
+{% endhighlight %}
+
+
 h3. Select an Alternative to Null
 
 This is commonly achieved in MySQL through the use of @IFNULL(x, y)@, but the @COALESCE@ function is equivalent in the case of two arguments, more general, and more widely implemented. It takes any number of arguments and returns the first one which is not null.
