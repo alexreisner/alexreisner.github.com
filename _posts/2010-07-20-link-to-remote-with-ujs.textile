@@ -78,3 +78,30 @@ If desired, we can also use the @ajax:loading@ event to change the link text (or
 {% endhighlight %}
 
 
+h2. Unexpected Token Error
+
+In implementing the above solution you may receive a JavaScript error, something like this:
+
+{% highlight :bash %}
+Uncaught SyntaxError: Unexpected token
+{% endhighlight %}
+
+*Nathaniel Bibler explains:*
+
+Here's the problem: if you're building a RESTful interface in Rails, then you've probably got <code>respond_to</code>s setup for HTML and JS. So, in this case, the browser load hits @/products@ and loads the original product list. It renders a link to AJAX load the additional products. Let's say that action is also to @/products@ (but for JS). So, as you've described in your tutorial, you'd like to just render HTML back to the client for the JS request. That's fine, except that by default jQuery will expect that it's executable JavaScript, since it's making a JavaScript request (this is defined by the @jQuery.ajax(:dataType)@). So it'll get the HTML string back and attempt to interpret it as javascript and blow up.
+
+To fix that, you'd think you can just set the @dataType@ to @'html'@. Well, yes, and no. That fixes it from jQuery's perspective. It will no longer try to execute it and you've now gotten past the Unexpected token issue. But, in doing so, jQuery will now make the AJAX request with an @Accept: text/html@ header. So, Rails will now think you're a web browser requesting the standard HTML page and will not render your JS view. So, now you're sending back the page with full layout. To sum up, jQuery and Rails are not quite on the same page if you're making a "javascript" request but returning "html." It breaks things.
+
+By the way, you can dictate the @dataType@ to use by setting a @"data-type"@ attribute on your remote link:
+
+{% highlight :erb %}
+<%= link_to 'foo', '/foo', :remote => true, 'data-type' => 'html' %>
+{% endhighlight %}
+
+which renders:
+
+{% highlight :html %}
+<a href="/foo" data-remote="true" data-type="html">foo</a>
+{% endhighlight %}
+
+If, however, you want this functionality, I would suggest using the @"text"@ data-type. Basically what would happen here is that jQuery will not execute the returned content. So, that fixes your first issue. Rails will still, however, attempt to render a TEXT response, since jQuery will post an Accept header with @"text/plain"@ in it, first. As long as you don't have a @respond_to@ defined for @"txt"@ (or some other @"text/plain"@), then Rails will continue down the @Accept@ header string to locate an acceptable response. jQuery is smart enough to also contain an @application/javascript@ string in there, so, eventually, Rails will decide that a JavaScript response is acceptable, and render the JS response you're expecting. It's very slightly hacky, but it works.
