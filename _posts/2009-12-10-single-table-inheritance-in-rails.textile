@@ -89,7 +89,7 @@ This only alleviates a particular symptom. If we use @form_for@, our form fields
 def self.model_name
   child.instance_eval do
     def model_name
-      Panel.model_name
+      Vehicle.model_name
     end
   end
   super
