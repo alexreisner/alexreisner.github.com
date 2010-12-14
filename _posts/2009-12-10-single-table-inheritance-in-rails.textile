@@ -72,36 +72,35 @@ If you're using Rails's fixtures for testing your app, remember that there is a 
 
 h3. Allow Children To Use Their Parent's Routes
 
+*Updated Dec 14, 2010*: Now more robust, courtesy of Nathan McWilliams.
+
 If you've ever tried to add STI to an existing Rails application you probably know that many of your @link_to@ and @form_for@ methods throw errors when you add a parent class. This is because ActionPack looks at the class of an object to determine its path and URL, and you haven't mapped routes for your new subclasses. You can add the routes like so, though I don't recommend it:
 
 {% highlight :ruby %}
-# not recommended:
-
+# NOT recommended:
 map.resources :cars,        :as => :vehicles, :controller => :vehicles
 map.resources :trucks,      :as => :vehicles, :controller => :vehicles
 map.resources :motorcycles, :as => :vehicles, :controller => :vehicles
 {% endhighlight %}
 
-This only alleviates a particular symptom. If we use @form_for@, our form fields will still not have the names we expect (eg: @params[:car][:color]@ instead of @params[:vehicle][:color]@). Instead, we should attack the root of the problem by implementing the @model_name@ method in our parent class. I haven't seen any documentation for this technique, so this is very unofficial, but it makes sense and it works perfectly for me with Rails 2.3 and 3. For example:
+This only alleviates a particular symptom. If we use @form_for@, our form fields will still not have the names we expect (eg: @params[:car][:color]@ instead of @params[:vehicle][:color]@). Instead, we should attack the root of the problem by implementing the @model_name@ method in our parent class. I haven't seen any documentation for this technique, so this is very unofficial, but it makes sense and it works perfectly for me in Rails 2.3 and 3:
 
 {% highlight :ruby %}
 def self.model_name
-  name = "vehicle"
-  name.instance_eval do
-    def plural;   pluralize;   end
-    def singular; singularize; end
-    def human;    singularize; end # for Rails 3.0.0+
-    def i18n_key; singularize; end # for Rails 3.0.3+
+  child.instance_eval do
+    def model_name
+      Panel.model_name
+    end
   end
-  return name
+  super
 end
 {% endhighlight %}
 
-That probably looks confusing, so let me explain:
+This probably looks confusing, so let me explain:
 
-ActionPack calls @model_name@ on the class of the object passed to a URL-generating method, (eg: @link_to("car", car)@). It expects the return value to implement the @plural@ and @singular@ methods, so we add them to the @"vehicle"@ string object using @instance_eval@. The @model_name@ method is then inherited by the @Car@, @Truck@, and @Motorcycle@ subclasses, and ActionPack will see all of these objects as belonging to the parent class (in this case @Vehicle@), and thus use the parent class's named routes (@VehiclesController@). This is all assuming you're using Rails resource-style (RESTful) URLs. (If you're not, please do.)
+When you call a URL-generating method (eg: @link_to("car", car)@), ActionPack calls @model_name@ on the class of the given object (here @car@). This returns a special type of string that determines what the object is called in URLs. All we're doing here is overriding the @model_name@ method for subclasses of @Vehicle@ so ActionPack will see @Car@, @Truck@, and @Motorcycle@ subclasses as belonging to the parent class (@Vehicle@), and thus use the parent class's named routes (@VehiclesController@) wherever URLs are generated. This is all assuming you're using Rails resource-style (RESTful) URLs. (If you're not, please do.)
 
-To investigate the @model_name@ invocation yourself, see the Rails source code for the @ActionController::RecordIdentifier#model_name_from_record_or_class@ method.
+To investigate the @model_name@ invocation yourself, see the Rails source code for the @ActionController::RecordIdentifier#model_name_from_record_or_class@ method. In Rails 2.3 the special string is an instance of @ActiveSupport::ModelName@, in Rails 3 it's an @ActiveModel::Name@ 
 
 
 h3. Make The Parent Class Aware of Its Children
