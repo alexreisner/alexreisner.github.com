@@ -88,7 +88,7 @@ map.resources :motorcycles, :as => :vehicles, :controller => :vehicles
 This only alleviates a particular symptom. If we use @form_for@, our form fields will still not have the names we expect (eg: @params[:car][:color]@ instead of @params[:vehicle][:color]@). Instead, we should attack the root of the problem by implementing the @model_name@ method in our parent class. I haven't seen any documentation for this technique, so this is very unofficial, but it makes sense and it works perfectly for me in Rails 2.3 and 3:
 
 {% highlight :ruby %}
-def self.model_name
+def self.inherited(child)
   child.instance_eval do
     def model_name
       Vehicle.model_name
