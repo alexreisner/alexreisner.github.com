@@ -190,7 +190,7 @@ YEAR(<date>)
 "*PostgreSQL*":http://www.postgresql.org/docs/8.3/static/functions-datetime.html#FUNCTIONS-DATETIME-TABLE
 
 {% highlight :bash %}
-EXTRACT(YEAR FROM TIMESTAMP <date>)
+EXTRACT(YEAR FROM <date>)
 {% endhighlight %}
 
 
