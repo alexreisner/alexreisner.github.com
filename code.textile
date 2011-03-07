@@ -5,16 +5,16 @@ layout: page
 The following are open source projects I develop and maintain.
 
 
+h2. Geocoder
+
+Object geocoding and database-agnostic distance calculations for Ruby on Rails.
+*"repo":http://github.com/alexreisner/geocoder* | *"about":http://www.rubygeocoder.com* | *"gem":http://gemcutter.org/gems/geocoder*
+
+
 h2. Informant
 
 Full-featured form builder for Rails with a simple syntax that keeps your views clean.
 *"repo":http://github.com/alexreisner/informant* | *"about":/code/informant.html* | *"doc":http://rdoc.info/projects/alexreisner/informant* | *"gem":http://gemcutter.org/gems/informant*
-
-
-h2. Geocoder
-
-Object geocoding and database-agnostic distance calculations for Ruby on Rails.
-*"repo":http://github.com/alexreisner/geocoder* | *"about":/code/geocoder.html* | *"gem":http://gemcutter.org/gems/rails-geocoder*
 
 
 h2. Handler
