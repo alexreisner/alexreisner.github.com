@@ -21,7 +21,7 @@ All field methods accept an options hash like the standard Rails FormBuilder met
 The label is inferred from the field name but can be specified manually with the @:label@ option. The second argument to a select field should be an array of options in the same format as used for the default Rails FormBuilder.
 
 <div id="car_manufacturer_field" class="informant_field">
-  <label for="car_manufacturer">Brand <span class="required">*</span></label>
+  <label for="car_manufacturer">Brand <span class="red">*</span></label>
   <select id="car_manufacturer" name="car[manufacturer]">
     <option value=""></option>
     <option value="Ascari">Ascari</option>

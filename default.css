@@ -75,7 +75,7 @@ input, select, textarea {
 input {
 	padding: 2px;
 }
-.required {
+.red {
   color: red;
 }
 
