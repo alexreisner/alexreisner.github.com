@@ -116,9 +116,8 @@ p.date {
   color: #999;
   font-style: italic;
 }
-dd {
-	margin-bottom: 8px;
-}
+dd { margin-bottom: 8px; }
+sup, sub { font-size: 85%; }
 
 /* --- Navbar --- */
 #navbar {
