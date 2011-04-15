@@ -101,9 +101,9 @@ Basically it works like this: for characters in the ASCII range, UTF-8 is identi
 |if it starts with @1110@|it's the first byte of a 3-byte character|
 |if it starts with @11110@|it's the first byte of a 4-byte character|
 
-All other bits are then concatenated to get the binary number which will be mapped to a character. With all these "metadata" bits we don't have true 32-bit character numbers like in UTF-32, so can we really represent the full Unicode character set? Remember, we need 21 bits to do that, so let's see how many actual data bits there are in the largest UTF-8 character (data bits are red):
+All other bits are then concatenated to get the binary number which will be mapped to a character. With all these "metadata" bits we don't have true 32-bit character numbers like in UTF-32, so can we really represent the full Unicode character set? Remember, we need 21 bits to do that, so let's see how many actual data bits there are in the largest UTF-8 character (data bits are bold):
 
-<tt>11110<span class="red">111</span> 10<span class="red">111111</span> 10<span class="red">111111</span> 10<span class="red">111111</span></tt>
+<tt>11110<strong>111</strong> 10<strong>111111</strong> 10<strong>111111</strong> 10<strong>111111</strong></tt>
 
 If you count them you'll see there are exactly the 21 required for Unicode.
 
