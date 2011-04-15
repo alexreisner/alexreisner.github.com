@@ -47,7 +47,7 @@ Pretty simple right? What we've been looking at so far is called ASCII encoding,
 
 h2. See It For Yourself
 
-If you're a healthy skeptic you may be wondering if this isn't an oversimplification. If you're on a Unix-like system with the @xxd@ command you can see for yourself that it isn't. The @xxd@ command creates a "hex dump" of its input. That is, it converts its input to raw bits. So let's give it the @"hello world"@ string and set the @-b@ option (which displays output in binary instead of the default hexadecimal):
+If you're a healthy skeptic you may be wondering if this isn't an oversimplification. If you're on a Unix-like system with the @xxd@ command (comes with Vim) you can see for yourself that it isn't. The @xxd@ command creates a "hex dump" of its input. That is, it converts its input to raw bits. So let's give it the @"hello world"@ string and set the @-b@ option (which displays output in binary instead of the default hexadecimal):
 
 @echo 'hello world' | xxd -b@
 
