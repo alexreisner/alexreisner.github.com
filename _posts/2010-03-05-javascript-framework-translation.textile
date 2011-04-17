@@ -89,7 +89,7 @@ $("#id").bind("click", function(event){...});
 "*Prototype*":http://www.prototypejs.org/api/event/observe
 
 {% highlight :javascript %}
-Event.observe($("id"), "click", function(event) {...});
+$("id").observe("click", function(event){...});
 {% endhighlight %}
 
 "*MooTools*":http://mootools.net/docs/core/Element/Element.Event#Element:addEvent
@@ -207,7 +207,7 @@ $("#id").append(...);
 "*Prototype*":http://www.prototypejs.org/api/element/insert
 
 {% highlight :javascript %}
-insert($("id"), ...);
+$("id").insert(...);
 {% endhighlight %}
 
 
