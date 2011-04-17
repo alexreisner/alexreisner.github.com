@@ -107,7 +107,7 @@ YAHOO.util.Event.addListener("id", "click", function(event){...});
 "*YUI3*":http://developer.yahoo.com/yui/3/event
 
 {% highlight :javascript %}
-YUI().use("node-base", function(Y) {
+YUI().use("node-base", function(Y){
   Y.on("click", function(event){...}, "#id");
 });
 {% endhighlight %}
