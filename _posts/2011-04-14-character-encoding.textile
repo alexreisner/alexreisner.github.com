@@ -117,3 +117,18 @@ There are a lot of other concerns that character encoding designers must deal wi
 * "UTF-8 character map":http://dev.networkerror.org/utf8/
 * "Comparison of Unicode encodings":http://en.wikipedia.org/wiki/Comparison_of_Unicode_encodings
 * "Ken Thompson and Rob Pike's original UTF-8 writeup":http://doc.cat-v.org/plan_9/4th_edition/papers/utf
+
+
+h2. Epilogue
+
+_April 19, 2011_
+
+After I posted this article there was a "discussion on Reddit":http://www.reddit.com/r/programming/comments/gqash/simple_fun_character_encoding_explanation/ in which "muyuu":http://www.reddit.com/user/muyuu made some excellent points which I thought were worth posting here:
+
+bq. "UTF-32 files are four times as large as ASCII files with the same text" seems to imply UTF-32 is retarded (or UTF-16 for that matter). You should add that obviously neither was designed to store ASCII text and that you can't represent Unicode text in ASCII at all, unless the whole text happens to fall into the very small ASCII subset.
+
+bq. You should also add that *UTF-8 text is only compact when something like 3/4+ of your text is plain ASCII*. If your text is in Japanese or Chinese, for example, then UTF-8 is ridiculously inefficient and UTF-16 is much better (or even better, their respective local encodings; they have many and most of them are variable-length). 30-40% extra size in text makes a lot of difference when the majority of your users connect from their cell phones.
+
+bq. It's also worth mention that variable-length encodings compress a lot worse than fixed length encodings, especially in the case of UTF-16 - because codepage grouping and character order are not random, and any trivial compressor will greatly benefit from that. Things are routinely compressed when transmitted over networks.
+
+bq. This is for the "UTF-8 is all we need" brigade. If you have many users in countries with different writing systems, supporting different encodings might be a good idea. Obviously it can be a complex issue, but - for instance - an additional 20% wait to the ping your users may have, it can be a deal breaker for your microblogging site in favour of a local one.
