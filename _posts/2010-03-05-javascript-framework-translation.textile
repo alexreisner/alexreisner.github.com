@@ -89,7 +89,7 @@ $("#id").bind("click", function(event){...});
 "*Prototype*":http://www.prototypejs.org/api/event/observe
 
 {% highlight :javascript %}
-Event.observe($("id"), "click", function(event) {...});
+$("id").observe("click", function(event){...});
 {% endhighlight %}
 
 "*MooTools*":http://mootools.net/docs/core/Element/Element.Event#Element:addEvent
@@ -107,7 +107,7 @@ YAHOO.util.Event.addListener("id", "click", function(event){...});
 "*YUI3*":http://developer.yahoo.com/yui/3/event
 
 {% highlight :javascript %}
-YUI().use("node-base", function(Y) {
+YUI().use("node-base", function(Y){
   Y.on("click", function(event){...}, "#id");
 });
 {% endhighlight %}
@@ -207,7 +207,7 @@ $("#id").append(...);
 "*Prototype*":http://www.prototypejs.org/api/element/insert
 
 {% highlight :javascript %}
-insert($("id"), ...);
+$("id").insert(...);
 {% endhighlight %}
 
 
