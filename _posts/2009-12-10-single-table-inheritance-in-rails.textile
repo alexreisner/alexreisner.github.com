@@ -92,6 +92,7 @@ def self.inherited(child)
   child.instance_eval do
     def model_name
       self.class.superclass.model_name
+      # use Vehicle.model_name with >1 inheritance level
     end
   end
   super
