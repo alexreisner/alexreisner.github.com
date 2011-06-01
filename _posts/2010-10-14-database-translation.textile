@@ -160,7 +160,7 @@ CHARINDEX(<sta>, <haystack>) # requires extension-functions
 "*MySQL*":http://www.mysql.com, and "*PostgreSQL*":http://www.postgresql.org
 
 {% highlight :bash %}
-POSITION(<sta>, <haystack>)
+POSITION(<sta> IN <haystack>)
 {% endhighlight %}
 
 
