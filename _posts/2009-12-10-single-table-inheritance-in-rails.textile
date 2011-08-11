@@ -111,11 +111,11 @@ Let's say we want to provide a single form for creating a Vehicle object, so the
 
 {% highlight :ruby %}
 def self.select_options
-  subclasses.map{ |c| c.to_s }.sort
+  descendants.map{ |c| c.to_s }.sort
 end
 {% endhighlight %}
 
-Internally, ActiveRecord uses a class variable <code>@@subclasses</code> which is accessible only through the protected method @subclasses@. This is another trick I discovered while reading the Rails source code ("unofficial" as far as I know), so if you don't like the feel of it we can re-implement the behavior directly in our parent class:
+Internally, ActiveRecord uses ActiveSupport's @DescendantsTracker@ module (versions prior to Rails 3 use a class variable <code>@@subclasses</code> which is accessible only through the protected method @subclasses@). This is another trick I discovered while reading the Rails source code ("unofficial" as far as I know), so if you don't like the feel of it we can re-implement the behavior directly in our parent class:
 
 {% highlight :ruby %}
 @child_classes = []
