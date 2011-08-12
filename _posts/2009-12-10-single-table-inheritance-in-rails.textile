@@ -133,10 +133,12 @@ end
 In either case, we still have one more problem to solve: child classes are not recognized by the parent until they are loaded. In typical Rails production and test environments this happens right away, but in development, where @config.cache_classes == false@, classes aren't loaded until you call upon them. So, for this to work consistently in our development environment we need to manually require classes:
 
 {% highlight :ruby %}
-# add to config/environments/development.rb:
+# add config/initializers/preload_sti_models.rb:
 
-%w[vehicle car truck motorcycle].each do |c|
-  require_dependency File.join("app","models","#{c}.rb")
+if Rails.env.development?
+  %w[vehicle car truck motorcycle].each do |c|
+    require_dependency File.join("app","models","#{c}.rb")
+  end
 end
 {% endhighlight %}
 
