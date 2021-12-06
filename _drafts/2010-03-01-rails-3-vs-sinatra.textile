@@ -1,8 +1,0 @@
----
-title: "Rails 3 vs Sinatra: Who Is Lightest?"
-layout: article
-categories: articles
----
-* http://yehudakatz.com/2009/08/26/how-to-build-sinatra-on-rails-3/
-* compare performance (speed and memory utilization)
-
